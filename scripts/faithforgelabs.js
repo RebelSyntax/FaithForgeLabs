@@ -44,6 +44,39 @@ function setupToggles() {
   });
 }
 
+async function renderGuideSteps(root) {
+  try {
+    // Get the config file
+    const configDir = await root.getDirectoryHandle("configs");
+    const appDir = await configDir.getDirectoryHandle("app");
+    const stepsFile = await appDir.getFileHandle("guide_steps.json");
+    const stepsJson = await stepsFile.getFile();
+    const steps = JSON.parse(await stepsJson.text());
+
+    // Render steps
+    const container = document.getElementById('steps-list');
+    if (container) {
+      container.innerHTML = '';
+      steps.forEach((step, index) => {
+        const div = document.createElement('div');
+        div.className = 'step';
+        div.innerHTML = `
+          <label><input type="checkbox"> Step ${index + 1}: ${step.title}</label>
+          <p>${step.description}</p>
+          <textarea class="notes" rows="3" placeholder="Notes for this step..."></textarea>
+          <div class="image-slot">
+            <img src="${step.image}" alt="${step.title} Image" onerror="this.style.display='none';" />
+          </div>
+        `;
+        container.appendChild(div);
+      });
+    }
+  } catch (err) {
+    console.error("Failed to load guide steps:", err);
+  }
+}
+
+// Call this after loading templates
 async function loadTemplates(root) {
   const app = document.getElementById("app");
   app.innerHTML = '';
@@ -56,16 +89,14 @@ async function loadTemplates(root) {
       const fileHandle = await templateDir.getFileHandle(name);
       const file = await fileHandle.getFile();
       const html = await file.text();
-
-      const section = document.createElement("section");
-      section.innerHTML = html;
-      app.appendChild(section);
+      app.insertAdjacentHTML('beforeend', html);
     } catch (err) {
       console.warn(`Failed to load ${name}:`, err);
     }
   }
 
-  setupToggles(); // hook up all toggle elements
+  setupToggles();
+  await renderGuideSteps(root); // <-- Add this line
 }
 
 document.getElementById("load-folder").addEventListener("click", async () => {

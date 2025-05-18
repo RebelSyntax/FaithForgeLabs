@@ -1,0 +1,14 @@
+[
+  { "title": "Workspace Prep", "description": "Clear a 3x3 ft table near power, add good lighting.", "image": "assets/placeholder_1.jpg" },
+  { "title": "Tool Purchase", "description": "Get your soldering, stripping, and testing tools.", "image": "assets/placeholder_2.jpg" },
+  { "title": "3D Printing Setup", "description": "Set up your 3D printer and install slicing software.", "image": "assets/placeholder_3.jpg" },
+  { "title": "Component Purchase", "description": "Order ESP32, LEDs, OLED, buttons, etc.", "image": "assets/placeholder_4.jpg" },
+  { "title": "Firmware Environment", "description": "Install Arduino IDE and add ESP32 board support.", "image": "assets/placeholder_5.jpg" },
+  { "title": "3D Print Case", "description": "Download STL and print the cube enclosure.", "image": "assets/placeholder_1.jpg" },
+  { "title": "Circuit Assembly", "description": "Wire and solder components to the ESP32.", "image": "assets/placeholder_2.jpg" },
+  { "title": "Code Flashing", "description": "Upload firmware for focus timer + verse cycle.", "image": "assets/placeholder_3.jpg" },
+  { "title": "AI Content Generation", "description": "Run script to generate custom verses.", "image": "assets/placeholder_4.jpg" },
+  { "title": "Content Storage", "description": "Save data to EEPROM or microSD (if used).", "image": "assets/placeholder_5.jpg" },
+  { "title": "Enclosure Assembly", "description": "Secure electronics into printed case.", "image": "assets/placeholder_1.jpg" },
+  { "title": "Packaging", "description": "Box product with devotional card & thank-you insert.", "image": "assets/placeholder_2.jpg" }
+]
