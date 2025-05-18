@@ -1,0 +1,36 @@
+{
+    "project_name": "FaithForge Labs",
+    "tagline": "A Christian-based creative lab building physical tools that combine faith, technology, and productivity.",
+    "core_values": [
+        "Faith",
+        "Craftsmanship",
+        "Purpose",
+        "Productivity",
+        "Physical over virtual"
+    ],
+    "non_negotiables": [
+        "No fantasy themes",
+        "Must be Christian-based",
+        "Must result in physical, tangible products"
+    ],
+    "workspace": {
+        "dimensions": "12x12 ft room + 4x6 ft closet",
+        "location": "First floor of 1000 sqft apartment",
+        "available_hours": {
+            "weekdays": "7 PM \u2013 12 AM (approx.)",
+            "weekends": "Full availability",
+            "sleep_required": "6+ hrs/night"
+        }
+    },
+    "budget": {
+        "initial": 2000,
+        "capital_flexibility": true,
+        "timeline": "1-year plan"
+    },
+    "logo_file": "faithforge_labs_logo_mastercrafted.png",
+    "first_product": "Prayer Focus Cube",
+    "execution_thread": "Tactical builds, guides, and visuals",
+    "concept_thread": "Strategic direction, branding, planning",
+    "sync_model": "Bi-directional push/pull between threads",
+    "html_bundle": "prayer_focus_cube_guide.zip"
+}

@@ -1,0 +1,123 @@
+{
+    "project": {
+        "name": "FaithForge Labs",
+        "description": "A Christian-based creative lab building physical tools that combine faith, technology, and productivity."
+    },
+    "branding": {
+        "logo": {
+            "file": "faithforge_labs_logo_mastercrafted.png",
+            "elements": {
+                "cross": {
+                    "description": "Bold, thick, and white-hot. Embedded directly into the anvil with a molten branding effect at the base."
+                },
+                "lightning": {
+                    "description": "Single bolt from Heaven to the cross. Terminates cleanly at impact point. No upward arcs or floor bleed."
+                },
+                "anvil": {
+                    "description": "Forged, beveled structure with visible weight. Embedded tech-style circuitry. Realistic lighting and surface heat variation."
+                },
+                "circuitry": {
+                    "description": "Activated from the cross impact. Directional flow (white/blue \u2192 red). Features energy pulses, glows, and bevel depth."
+                },
+                "flames": {
+                    "description": "Originate from beneath the anvil, not floating. Condensed, upward-reaching tongue shapes. Gradient: blue/white core \u2192 orange mid \u2192 red/ember tips. Light bleed on nearby surfaces."
+                },
+                "halo": {
+                    "description": "Soft circular glow above the cross. Contains radial light beams and cosmic shimmer. Represents divine presence without overpowering."
+                },
+                "background": {
+                    "description": "Subtle celestial mist, heat distortion, ambient rays. Creates spiritual context without distracting from the logo\u2019s core."
+                },
+                "typography": {
+                    "faithforge": "Forged metallic texture, beveled, grounded.",
+                    "labs": "Red-hot finish, slightly glowing from below."
+                },
+                "hidden_symbolism": {
+                    "description": "Optional scripture lines (e.g., Isaiah 54:16) faintly etched in circuit paths. Visuals suggest purification, divine spark, and heavenly forging of tools."
+                }
+            },
+            "variants": [
+                "forge_flame_final",
+                "svg_version_tbd",
+                "monochrome_version_tbd"
+            ]
+        }
+    },
+    "products": [
+        {
+            "name": "Prayer Focus Cube",
+            "status": "In Development",
+            "description": "A scripture-based interactive cube using ESP32, OLED, LED ring, and a button. Designed for daily verse display and spiritual focus.",
+            "tech_stack": [
+                "ESP32",
+                "LED Ring",
+                "OLED Screen",
+                "Push Button"
+            ],
+            "features": [
+                "AI personalization",
+                "Physical interaction",
+                "Offline guide"
+            ],
+            "guide": {
+                "steps": [
+                    "Workspace Prep",
+                    "Tool Purchase",
+                    "3D Printing Setup",
+                    "Component Ordering",
+                    "Firmware Environment Setup",
+                    "3D Print Case",
+                    "Circuit Assembly",
+                    "Code Flashing",
+                    "AI Content Generation",
+                    "Content Storage",
+                    "Enclosure Assembly",
+                    "Packaging & Insert Materials"
+                ],
+                "format": "HTML offline bundle",
+                "file": "prayer_focus_cube_guide.zip"
+            }
+        }
+    ],
+    "roadmap": {
+        "style_guide": "To Do",
+        "landing_page": "To Do",
+        "ai_script": "To Do",
+        "product_2": "TBD",
+        "packaging_merch": "To Do"
+    },
+    "business_model": {
+        "long_term_goal": "Replace full-time job with scalable faith-based product business",
+        "scaling_plan": [
+            "Craftsman phase (home production)",
+            "Semi-automated kits",
+            "Fully scalable distribution (Shopify, Etsy, DTC)"
+        ],
+        "product_philosophy": [
+            "Christian-integrated tools for discipline, prayer, and productivity",
+            "Embedded tech where appropriate (ESP32, OLED, microcontrollers)",
+            "Preference for AI-enhanced, scripture-aligned smart gear"
+        ]
+    },
+    "design_guidelines": {
+        "html_ui": {
+            "local_only": {
+                "value": true,
+                "description": "The HTML must function fully when opened directly via file:// protocol without requiring a server or localhost environment. No feature should rely on server context, fetch APIs, module imports, or external CDNs. All scripts, images, and styles must load and run correctly in offline double-click use."
+            },
+            "responsive": true,
+            "collapsible_sections": true,
+            "clean_layout": true,
+            "brand_logo_included": true
+        },
+        "logo_history": {
+            "name_choice": "FaithForge (rejected 'FaithForged' for tense precision)",
+            "iterations": "~30 visual versions explored",
+            "influences": [
+                "Condensed flame shapes",
+                "Celestial halos",
+                "Forged surfaces"
+            ]
+        }
+    }
+}
