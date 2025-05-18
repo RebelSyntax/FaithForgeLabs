@@ -1,0 +1,19 @@
+{
+  "name": "faithforgelabs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "remap": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RebelSyntax/FaithForgeLabs.git"
+  },
+  "author": "John Busciglio",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/RebelSyntax/FaithForgeLabs/issues"
+  },
+  "homepage": "https://github.com/RebelSyntax/FaithForgeLabs#readme",
+  "description": ""
+}

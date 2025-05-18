@@ -1,0 +1,574 @@
+{
+  "properties": [
+    { "name": "Icon Clarity", "key": "iconClarity", "category": "Primary" },
+    { "name": "Typography", "key": "typography", "category": "Primary" },
+    { "name": "Balance", "key": "balance", "category": "Primary" },
+    { "name": "Scalability", "key": "scalability", "category": "Primary" },
+    { "name": "Faith-Tech Fusion", "key": "faithTechFusion", "category": "Secondary" },
+    { "name": "Originality", "key": "originality", "category": "Secondary" },
+    { "name": "Emotional Impact", "key": "emotionalImpact", "category": "Secondary" },
+    { "name": "Bonus", "key": "bonus", "category": "Secondary" }
+  ],
+  "logos": [
+    {
+      "filename": "45f0b61f-c6a8-473c-ae1c-21045003661c.png",
+      "scores": {
+        "iconClarity": 10,
+        "typography": 9,
+        "balance": 9,
+        "scalability": 10,
+        "faithTechFusion": 9,
+        "originality": 10,
+        "emotionalImpact": 10,
+        "bonus": 10
+      },
+      "notes": ""
+    },
+    {
+      "filename": "99d16b61-cb4b-4219-9bbc-b27de18eac88.png",
+      "scores": {
+        "iconClarity": 10,
+        "typography": 8,
+        "balance": 9,
+        "scalability": 10,
+        "faithTechFusion": 9,
+        "originality": 9,
+        "emotionalImpact": 8,
+        "bonus": 8
+      },
+      "notes": ""
+    },
+    {
+      "filename": "9cad344e-1c43-4fff-ad18-19b88459fb4f.png",
+      "scores": {
+        "iconClarity": 8,
+        "typography": 7,
+        "balance": 10,
+        "scalability": 10,
+        "faithTechFusion": 10,
+        "originality": 9,
+        "emotionalImpact": 9,
+        "bonus": 9
+      },
+      "notes": ""
+    },
+    {
+      "filename": "99c813f3-7d33-47cb-9dde-82ddec820e7a.png",
+      "scores": {
+        "iconClarity": 9,
+        "typography": 9,
+        "balance": 10,
+        "scalability": 8,
+        "faithTechFusion": 8,
+        "originality": 8,
+        "emotionalImpact": 8,
+        "bonus": 9
+      },
+      "notes": ""
+    },
+    {
+      "filename": "e90495b3-ac07-4cc6-9751-494217c86e1d.png",
+      "scores": {
+        "iconClarity": 9,
+        "typography": 9,
+        "balance": 7,
+        "scalability": 6,
+        "faithTechFusion": 10,
+        "originality": 10,
+        "emotionalImpact": 10,
+        "bonus": 9
+      },
+      "notes": ""
+    },
+    {
+      "filename": "952a9b27-06bd-488e-8b1e-dd97e816297a.png",
+      "scores": {
+        "iconClarity": 9,
+        "typography": 9,
+        "balance": 10,
+        "scalability": 10,
+        "faithTechFusion": 8,
+        "originality": 6,
+        "emotionalImpact": 9,
+        "bonus": 9
+      },
+      "notes": ""
+    },
+    {
+      "filename": "6e52850d-7c4c-4172-937f-7950713fad01.png",
+      "scores": {
+        "iconClarity": 10,
+        "typography": 6,
+        "balance": 9,
+        "scalability": 7,
+        "faithTechFusion": 10,
+        "originality": 9,
+        "emotionalImpact": 9,
+        "bonus": 9
+      },
+      "notes": ""
+    },
+    {
+      "filename": "5a1d5221-cefa-4872-a50f-b50ae261ccb6.png",
+      "scores": {
+        "iconClarity": 9,
+        "typography": 8,
+        "balance": 7,
+        "scalability": 10,
+        "faithTechFusion": 7,
+        "originality": 9,
+        "emotionalImpact": 10,
+        "bonus": 9
+      },
+      "notes": ""
+    },
+    {
+      "filename": "c3f1f0b8-970e-4fd6-9453-59610f4cb436.png",
+      "scores": {
+        "iconClarity": 7,
+        "typography": 10,
+        "balance": 9,
+        "scalability": 10,
+        "faithTechFusion": 8,
+        "originality": 8,
+        "emotionalImpact": 7,
+        "bonus": 8
+      },
+      "notes": ""
+    },
+    {
+      "filename": "72c2a28e-f778-47ea-a11e-cb99bf5134a7.png",
+      "scores": {
+        "iconClarity": 10,
+        "typography": 7,
+        "balance": 7,
+        "scalability": 9,
+        "faithTechFusion": 10,
+        "originality": 7,
+        "emotionalImpact": 9,
+        "bonus": 9
+      },
+      "notes": ""
+    },
+    {
+      "filename": "6794f25c-a3ac-4ebf-a9d2-187859586c1a.png",
+      "scores": {
+        "iconClarity": 7,
+        "typography": 6,
+        "balance": 9,
+        "scalability": 9,
+        "faithTechFusion": 8,
+        "originality": 10,
+        "emotionalImpact": 9,
+        "bonus": 9
+      },
+      "notes": ""
+    },
+    {
+      "filename": "cd896b2c-dbca-435e-b548-1b165409d963.png",
+      "scores": {
+        "iconClarity": 8,
+        "typography": 10,
+        "balance": 6,
+        "scalability": 10,
+        "faithTechFusion": 10,
+        "originality": 7,
+        "emotionalImpact": 7,
+        "bonus": 8
+      },
+      "notes": ""
+    },
+    {
+      "filename": "4f588b67-d202-4ab6-8ac2-6d876fff6786.png",
+      "scores": {
+        "iconClarity": 10,
+        "typography": 10,
+        "balance": 6,
+        "scalability": 6,
+        "faithTechFusion": 10,
+        "originality": 8,
+        "emotionalImpact": 6,
+        "bonus": 8
+      },
+      "notes": ""
+    },
+    {
+      "filename": "b08e97a4-298f-4db8-8332-01d6714710e8.png",
+      "scores": {
+        "iconClarity": 8,
+        "typography": 6,
+        "balance": 10,
+        "scalability": 10,
+        "faithTechFusion": 6,
+        "originality": 9,
+        "emotionalImpact": 7,
+        "bonus": 9
+      },
+      "notes": ""
+    },
+    {
+      "filename": "9d546e22-7fe4-4d5a-b2e3-2519a1ca54c0.png",
+      "scores": {
+        "iconClarity": 6,
+        "typography": 8,
+        "balance": 9,
+        "scalability": 7,
+        "faithTechFusion": 9,
+        "originality": 9,
+        "emotionalImpact": 8,
+        "bonus": 9
+      },
+      "notes": ""
+    },
+    {
+      "filename": "7d92ae55-3b28-4639-b30e-880d3c5cc57e.png",
+      "scores": {
+        "iconClarity": 10,
+        "typography": 6,
+        "balance": 7,
+        "scalability": 8,
+        "faithTechFusion": 7,
+        "originality": 9,
+        "emotionalImpact": 9,
+        "bonus": 9
+      },
+      "notes": ""
+    },
+    {
+      "filename": "5e32057a-fcc9-4914-b2bb-1b8a9d9c0e8a.png",
+      "scores": {
+        "iconClarity": 6,
+        "typography": 8,
+        "balance": 8,
+        "scalability": 8,
+        "faithTechFusion": 9,
+        "originality": 10,
+        "emotionalImpact": 6,
+        "bonus": 10
+      },
+      "notes": ""
+    },
+    {
+      "filename": "62ef73ce-edca-47a1-bcbb-d902489cf67d.png",
+      "scores": {
+        "iconClarity": 7,
+        "typography": 7,
+        "balance": 9,
+        "scalability": 8,
+        "faithTechFusion": 7,
+        "originality": 10,
+        "emotionalImpact": 7,
+        "bonus": 10
+      },
+      "notes": ""
+    },
+    {
+      "filename": "3e97e28a-78cc-4ffe-804e-de93b553361d.png",
+      "scores": {
+        "iconClarity": 7,
+        "typography": 9,
+        "balance": 7,
+        "scalability": 9,
+        "faithTechFusion": 10,
+        "originality": 6,
+        "emotionalImpact": 7,
+        "bonus": 9
+      },
+      "notes": ""
+    },
+    {
+      "filename": "febc5399-d0fa-47f4-80a3-5c3ac0919d8d.png",
+      "scores": {
+        "iconClarity": 8,
+        "typography": 8,
+        "balance": 10,
+        "scalability": 8,
+        "faithTechFusion": 6,
+        "originality": 7,
+        "emotionalImpact": 8,
+        "bonus": 8
+      },
+      "notes": ""
+    },
+    {
+      "filename": "ab8ac8fb-dd28-46fa-85fc-d3db8fe28400.png",
+      "scores": {
+        "iconClarity": 9,
+        "typography": 7,
+        "balance": 7,
+        "scalability": 8,
+        "faithTechFusion": 7,
+        "originality": 6,
+        "emotionalImpact": 10,
+        "bonus": 7
+      },
+      "notes": ""
+    },
+    {
+      "filename": "811d39b1-4584-4d41-8524-cd97a4e8e3e1.png",
+      "scores": {
+        "iconClarity": 7,
+        "typography": 7,
+        "balance": 7,
+        "scalability": 10,
+        "faithTechFusion": 10,
+        "originality": 7,
+        "emotionalImpact": 6,
+        "bonus": 10
+      },
+      "notes": ""
+    },
+    {
+      "filename": "2dc3df01-b2b1-44ef-ad78-1b08ebabc232.png",
+      "scores": {
+        "iconClarity": 8,
+        "typography": 8,
+        "balance": 8,
+        "scalability": 9,
+        "faithTechFusion": 6,
+        "originality": 7,
+        "emotionalImpact": 8,
+        "bonus": 8
+      },
+      "notes": ""
+    },
+    {
+      "filename": "5e32057a-fcc9-4914-b2bb-1b8a9d9c0e8a (1).png",
+      "scores": {
+        "iconClarity": 6,
+        "typography": 10,
+        "balance": 10,
+        "scalability": 8,
+        "faithTechFusion": 7,
+        "originality": 7,
+        "emotionalImpact": 6,
+        "bonus": 10
+      },
+      "notes": ""
+    },
+    {
+      "filename": "92939181-8be1-471d-a13b-6bbe1d74b6dc.png",
+      "scores": {
+        "iconClarity": 10,
+        "typography": 6,
+        "balance": 10,
+        "scalability": 7,
+        "faithTechFusion": 7,
+        "originality": 6,
+        "emotionalImpact": 7,
+        "bonus": 6
+      },
+      "notes": ""
+    },
+    {
+      "filename": "99680a96-a5c3-4bf7-b91b-8d0e12fbf861.png",
+      "scores": {
+        "iconClarity": 7,
+        "typography": 8,
+        "balance": 8,
+        "scalability": 6,
+        "faithTechFusion": 9,
+        "originality": 9,
+        "emotionalImpact": 6,
+        "bonus": 8
+      },
+      "notes": ""
+    },
+    {
+      "filename": "d193a63a-a3d0-49aa-acfb-c5c9dd81df66.png",
+      "scores": {
+        "iconClarity": 6,
+        "typography": 7,
+        "balance": 7,
+        "scalability": 9,
+        "faithTechFusion": 7,
+        "originality": 7,
+        "emotionalImpact": 10,
+        "bonus": 7
+      },
+      "notes": ""
+    },
+    {
+      "filename": "429d06b0-b186-47a2-9a7e-71a0025529fd.png",
+      "scores": {
+        "iconClarity": 7,
+        "typography": 10,
+        "balance": 6,
+        "scalability": 10,
+        "faithTechFusion": 6,
+        "originality": 8,
+        "emotionalImpact": 6,
+        "bonus": 10
+      },
+      "notes": ""
+    },
+    {
+      "filename": "200d8983-c34f-4682-97ca-a79f7bc924eb.png",
+      "scores": {
+        "iconClarity": 6,
+        "typography": 8,
+        "balance": 10,
+        "scalability": 6,
+        "faithTechFusion": 8,
+        "originality": 6,
+        "emotionalImpact": 9,
+        "bonus": 8
+      },
+      "notes": ""
+    },
+    {
+      "filename": "62ef73ce-edca-47a1-bcbb-d902489cf67d (1).png",
+      "scores": {
+        "iconClarity": 6,
+        "typography": 10,
+        "balance": 7,
+        "scalability": 6,
+        "faithTechFusion": 10,
+        "originality": 7,
+        "emotionalImpact": 7,
+        "bonus": 10
+      },
+      "notes": ""
+    },
+    {
+      "filename": "75816cdd-b8ef-454e-abf8-3d2ea1f7d6ea.png",
+      "scores": {
+        "iconClarity": 6,
+        "typography": 8,
+        "balance": 8,
+        "scalability": 6,
+        "faithTechFusion": 9,
+        "originality": 9,
+        "emotionalImpact": 7,
+        "bonus": 8
+      },
+      "notes": ""
+    },
+    {
+      "filename": "ae43fade-62b0-4307-bbb9-f84c9ac23dab.png",
+      "scores": {
+        "iconClarity": 8,
+        "typography": 8,
+        "balance": 7,
+        "scalability": 7,
+        "faithTechFusion": 7,
+        "originality": 6,
+        "emotionalImpact": 9,
+        "bonus": 8
+      },
+      "notes": ""
+    },
+    {
+      "filename": "29791c9a-f2ae-4bb9-97e6-8136cb5ae6ca.png",
+      "scores": {
+        "iconClarity": 6,
+        "typography": 10,
+        "balance": 7,
+        "scalability": 9,
+        "faithTechFusion": 7,
+        "originality": 6,
+        "emotionalImpact": 7,
+        "bonus": 10
+      },
+      "notes": ""
+    },
+    {
+      "filename": "f1c39018-3258-4533-b848-657f07cc44f7.png",
+      "scores": {
+        "iconClarity": 6,
+        "typography": 9,
+        "balance": 9,
+        "scalability": 6,
+        "faithTechFusion": 7,
+        "originality": 9,
+        "emotionalImpact": 6,
+        "bonus": 9
+      },
+      "notes": ""
+    },
+    {
+      "filename": "aaa7a9e9-fee9-40fe-8f88-b7bc13ce4dea.png",
+      "scores": {
+        "iconClarity": 7,
+        "typography": 8,
+        "balance": 8,
+        "scalability": 7,
+        "faithTechFusion": 6,
+        "originality": 6,
+        "emotionalImpact": 9,
+        "bonus": 8
+      },
+      "notes": ""
+    },
+    {
+      "filename": "2f9be9fb-d43c-4cb7-8e9a-2e08550a0811.png",
+      "scores": {
+        "iconClarity": 7,
+        "typography": 6,
+        "balance": 6,
+        "scalability": 10,
+        "faithTechFusion": 7,
+        "originality": 6,
+        "emotionalImpact": 9,
+        "bonus": 8
+      },
+      "notes": ""
+    },
+    {
+      "filename": "d0cf3c2d-d058-474b-95bd-0dfb8b615d6d.png",
+      "scores": {
+        "iconClarity": 6,
+        "typography": 7,
+        "balance": 6,
+        "scalability": 8,
+        "faithTechFusion": 10,
+        "originality": 7,
+        "emotionalImpact": 6,
+        "bonus": 10
+      },
+      "notes": ""
+    },
+    {
+      "filename": "44367653-0630-4de2-ae91-3d9dc82f21be.png",
+      "scores": {
+        "iconClarity": 6,
+        "typography": 6,
+        "balance": 8,
+        "scalability": 8,
+        "faithTechFusion": 6,
+        "originality": 6,
+        "emotionalImpact": 9,
+        "bonus": 8
+      },
+      "notes": ""
+    },
+    {
+      "filename": "ca359440-934e-4b7c-a5ac-6f0ad3759909.png",
+      "scores": {
+        "iconClarity": 7,
+        "typography": 7,
+        "balance": 6,
+        "scalability": 6,
+        "faithTechFusion": 6,
+        "originality": 6,
+        "emotionalImpact": 8,
+        "bonus": 7
+      },
+      "notes": ""
+    },
+    {
+      "filename": "4b11eeb3-359e-44f5-ba7b-1a9614b4ac5d.png",
+      "scores": {
+        "iconClarity": 6,
+        "typography": 6,
+        "balance": 8,
+        "scalability": 6,
+        "faithTechFusion": 6,
+        "originality": 7,
+        "emotionalImpact": 6,
+        "bonus": 8
+      },
+      "notes": ""
+    }
+  ]
+}

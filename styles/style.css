@@ -107,3 +107,8 @@ textarea {
   width: 100%;
   min-height: 40px;
 }
+
+/* Add to your CSS */
+#load-folder {
+  display: none;
+}
