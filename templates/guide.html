@@ -1,0 +1,122 @@
+
+    <div class="collapsible-toggle" onclick="toggleContent('steps')">🧱 Step-by-Step Build Guide</div>
+    <div class="collapsible-content" id="steps" style="display: none;">
+      <div id="steps"></div>
+
+      <script>
+        const steps = [
+          { title: "Workspace Prep", description: "Clear a 3x3 ft table near power, add good lighting.", image: "assets/placeholder_1.jpg" },
+          { title: "Tool Purchase", description: "Get your soldering, stripping, and testing tools.", image: "assets/placeholder_2.jpg" },
+          { title: "3D Printing Setup", description: "Set up your 3D printer and install slicing software.", image: "assets/placeholder_3.jpg" },
+          { title: "Component Purchase", description: "Order ESP32, LEDs, OLED, buttons, etc.", image: "assets/placeholder_4.jpg" },
+          { title: "Firmware Environment", description: "Install Arduino IDE and add ESP32 board support.", image: "assets/placeholder_5.jpg" },
+          { title: "3D Print Case", description: "Download STL and print the cube enclosure.", image: "assets/placeholder_1.jpg" },
+          { title: "Circuit Assembly", description: "Wire and solder components to the ESP32.", image: "assets/placeholder_2.jpg" },
+          { title: "Code Flashing", description: "Upload firmware for focus timer + verse cycle.", image: "assets/placeholder_3.jpg" },
+          { title: "AI Content Generation", description: "Run script to generate custom verses.", image: "assets/placeholder_4.jpg" },
+          { title: "Content Storage", description: "Save data to EEPROM or microSD (if used).", image: "assets/placeholder_5.jpg" },
+          { title: "Enclosure Assembly", description: "Secure electronics into printed case.", image: "assets/placeholder_1.jpg" },
+          { title: "Packaging", description: "Box product with devotional card & thank-you insert.", image: "assets/placeholder_2.jpg" }
+        ];
+
+        const container = document.getElementById('steps');
+        steps.forEach((step, index) => {
+          const div = document.createElement('div');
+          div.className = 'step';
+          div.innerHTML = `
+        <label><input type="checkbox"> Step ${index + 1}: ${step.title}</label>
+        <p>${step.description}</p>
+        <textarea class="notes" rows="3" placeholder="Notes for this step..."></textarea>
+        <div class="image-slot">
+          <img src="${step.image}" alt="${step.title} Image" onerror="this.style.display='none';" />
+        </div>
+      `;
+          container.appendChild(div);
+        });
+      </script><div class="step">
+        <label><input type="checkbox"> Step 1: Workspace Prep</label>
+        <p>Clear a 3x3 ft table near power, add good lighting.</p>
+        <textarea class="notes" rows="3" placeholder="Notes for this step..."></textarea>
+        <div class="image-slot">
+          <img src="assets/placeholder_1.jpg" alt="Workspace Prep Image" onerror="this.style.display='none';" style="display: none;">
+        </div>
+      </div><div class="step">
+        <label><input type="checkbox"> Step 2: Tool Purchase</label>
+        <p>Get your soldering, stripping, and testing tools.</p>
+        <textarea class="notes" rows="3" placeholder="Notes for this step..."></textarea>
+        <div class="image-slot">
+          <img src="assets/placeholder_2.jpg" alt="Tool Purchase Image" onerror="this.style.display='none';" style="display: none;">
+        </div>
+      </div><div class="step">
+        <label><input type="checkbox"> Step 3: 3D Printing Setup</label>
+        <p>Set up your 3D printer and install slicing software.</p>
+        <textarea class="notes" rows="3" placeholder="Notes for this step..."></textarea>
+        <div class="image-slot">
+          <img src="assets/placeholder_3.jpg" alt="3D Printing Setup Image" onerror="this.style.display='none';" style="display: none;">
+        </div>
+      </div><div class="step">
+        <label><input type="checkbox"> Step 4: Component Purchase</label>
+        <p>Order ESP32, LEDs, OLED, buttons, etc.</p>
+        <textarea class="notes" rows="3" placeholder="Notes for this step..."></textarea>
+        <div class="image-slot">
+          <img src="assets/placeholder_4.jpg" alt="Component Purchase Image" onerror="this.style.display='none';" style="display: none;">
+        </div>
+      </div><div class="step">
+        <label><input type="checkbox"> Step 5: Firmware Environment</label>
+        <p>Install Arduino IDE and add ESP32 board support.</p>
+        <textarea class="notes" rows="3" placeholder="Notes for this step..."></textarea>
+        <div class="image-slot">
+          <img src="assets/placeholder_5.jpg" alt="Firmware Environment Image" onerror="this.style.display='none';" style="display: none;">
+        </div>
+      </div><div class="step">
+        <label><input type="checkbox"> Step 6: 3D Print Case</label>
+        <p>Download STL and print the cube enclosure.</p>
+        <textarea class="notes" rows="3" placeholder="Notes for this step..."></textarea>
+        <div class="image-slot">
+          <img src="assets/placeholder_1.jpg" alt="3D Print Case Image" onerror="this.style.display='none';" style="display: none;">
+        </div>
+      </div><div class="step">
+        <label><input type="checkbox"> Step 7: Circuit Assembly</label>
+        <p>Wire and solder components to the ESP32.</p>
+        <textarea class="notes" rows="3" placeholder="Notes for this step..."></textarea>
+        <div class="image-slot">
+          <img src="assets/placeholder_2.jpg" alt="Circuit Assembly Image" onerror="this.style.display='none';" style="display: none;">
+        </div>
+      </div><div class="step">
+        <label><input type="checkbox"> Step 8: Code Flashing</label>
+        <p>Upload firmware for focus timer + verse cycle.</p>
+        <textarea class="notes" rows="3" placeholder="Notes for this step..."></textarea>
+        <div class="image-slot">
+          <img src="assets/placeholder_3.jpg" alt="Code Flashing Image" onerror="this.style.display='none';" style="display: none;">
+        </div>
+      </div><div class="step">
+        <label><input type="checkbox"> Step 9: AI Content Generation</label>
+        <p>Run script to generate custom verses.</p>
+        <textarea class="notes" rows="3" placeholder="Notes for this step..."></textarea>
+        <div class="image-slot">
+          <img src="assets/placeholder_4.jpg" alt="AI Content Generation Image" onerror="this.style.display='none';" style="display: none;">
+        </div>
+      </div><div class="step">
+        <label><input type="checkbox"> Step 10: Content Storage</label>
+        <p>Save data to EEPROM or microSD (if used).</p>
+        <textarea class="notes" rows="3" placeholder="Notes for this step..."></textarea>
+        <div class="image-slot">
+          <img src="assets/placeholder_5.jpg" alt="Content Storage Image" onerror="this.style.display='none';" style="display: none;">
+        </div>
+      </div><div class="step">
+        <label><input type="checkbox"> Step 11: Enclosure Assembly</label>
+        <p>Secure electronics into printed case.</p>
+        <textarea class="notes" rows="3" placeholder="Notes for this step..."></textarea>
+        <div class="image-slot">
+          <img src="assets/placeholder_1.jpg" alt="Enclosure Assembly Image" onerror="this.style.display='none';" style="display: none;">
+        </div>
+      </div><div class="step">
+        <label><input type="checkbox"> Step 12: Packaging</label>
+        <p>Box product with devotional card &amp; thank-you insert.</p>
+        <textarea class="notes" rows="3" placeholder="Notes for this step..."></textarea>
+        <div class="image-slot">
+          <img src="assets/placeholder_2.jpg" alt="Packaging Image" onerror="this.style.display='none';" style="display: none;">
+        </div>
+      </div>
+    </div>
+  </div>
