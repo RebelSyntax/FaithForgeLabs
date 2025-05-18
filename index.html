@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>FaithForgeLabs App Loader</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+  <div id="branding">
+    <div id="logo">
+      <img id="branding-logo" src="index.png" alt="FaithForgeLabs Logo" />
+    </div>
+    <div id="app-title">FaithForgeLabs App Loader</div>
+  </div>
+  <div id="tagline"></div>
+
+  <div id="admin-panel-container">
+    <button id="admin-toggle" aria-label="Show Admin Panel">
+      <span class="vertical-text">Admin</span>
+    </button>
+    <div id="admin-panel">
+      <button id="load-folder" style="display:none;">Load App Folder</button>
+      <button id="reset-app" style="display:none;">Reset App</button>
+      <button id="apply-config" style="display:none;">Apply Config</button>
+      <div id="config-summary" style="display:none; background:#f5f7fa; border-radius:6px; padding:1em; margin:1em 0 0 0; font-size:0.95em;"></div>
+      <div id="output"></div>
+    </div>
+  </div>
+
+  <div id="app-content"></div>
+
+  <script src="index.js"></script>
+</body>
+
+</html>

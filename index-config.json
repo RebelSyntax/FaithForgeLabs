@@ -1,0 +1,26 @@
+{
+  "folders": {
+    "scripts": "scripts",
+    "assets": "assets",
+    "data": "data",
+    "configs": "configs",
+    "logos": "logo",
+    "styles": "styles",
+    "templates": "templates"
+  },
+  "scripts": [
+    "faithforgelabs.js"
+  ],
+  "assets": [
+    
+  ],
+  "data": [
+    
+  ],
+  "appTitle": "FaithForge Labs",
+  "tagline": "Where Faith and Technology Forge New Possibilities",
+  "features": {
+    "enableGreeting": true
+  },
+  "logo": "index.png"
+}

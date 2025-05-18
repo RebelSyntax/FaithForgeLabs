@@ -1,0 +1,257 @@
+body {
+  background: #f7f8fa;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  margin: 0;
+  color: #222;
+}
+
+#branding {
+  display: flex;
+  align-items: center;
+  gap: 2em;
+  margin: 3em 2em 2em 2em;
+  min-height: 120px;
+}
+
+#logo {
+  width: 96px;
+  height: 96px;
+  border-radius: 18px;
+  margin-right: 2em;
+  box-shadow: 0 4px 16px #4b6cb71a;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+#logo img, #branding-logo {
+  height: 96px;
+  width: 96px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px #4b6cb733;
+  object-fit: contain;
+  display: block;
+}
+
+#app-title {
+  font-size: 2.2em;
+  font-weight: bold;
+  color: #5a6dc6;
+  letter-spacing: 1px;
+}
+
+#tagline {
+  margin-left: 110px;
+  margin-bottom: 1.5em;
+  font-size: 1.15em;
+  color: #4b6cb7;
+  font-style: italic;
+}
+
+/* Slide-out admin panel styles */
+#admin-panel-container {
+  position: fixed;
+  top: 2em;
+  right: 0;
+  z-index: 100;
+  transition: transform 0.4s cubic-bezier(.77,0,.18,1);
+  transform: translateX(90%);
+  pointer-events: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+#admin-panel-container:hover,
+#admin-panel-container:focus-within {
+  transform: translateX(0);
+}
+
+#admin-panel {
+  background: #fff;
+  border-radius: 12px 0 0 12px;
+  box-shadow: -2px 0 16px #4b6cb71a;
+  padding: 2em 2em 2em 2em;
+  min-width: 320px;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.7em;
+  margin-top: 0;
+}
+
+#admin-panel button {
+  margin-right: 0.5em;
+  padding: 0.5em 1.2em;
+  font-size: 1em;
+  border-radius: 5px;
+  border: 1px solid #bfc6e0;
+  background: #f5f7fa;
+  color: #4b6cb7;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+#admin-panel button:hover,
+#load-folder:hover {
+  background: #e3e8f7;
+  color: #222;
+}
+
+#load-folder {
+  background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+  color: #fff;
+  border: none;
+  padding: 0.7em 1.5em;
+  border-radius: 6px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-bottom: 1em;
+  box-shadow: 0 2px 8px #4b6cb71a;
+  display: none;
+}
+
+#config-summary {
+  margin-bottom: 1em;
+  background: #f5f7fa;
+  border-radius: 6px;
+  padding: 1em;
+  font-size: 0.95em;
+}
+
+#output {
+  color: #b71c1c;
+  min-height: 2em;
+  font-size: 1em;
+  margin-bottom: 0.5em;
+}
+
+#app-content {
+  margin: 2em 2em 0 2em;
+  min-height: 120px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px #4b6cb71a;
+  padding: 2em;
+  transition: margin-right 0.4s cubic-bezier(.77,0,.18,1);
+}
+
+/* Hide admin panel when slid out */
+#admin-panel-container.closed {
+  transform: translateX(100%);
+  pointer-events: none;
+}
+#admin-toggle {
+  position: relative;
+  right: 0;
+  z-index: 101;
+  background: #5a6dc6;
+  color: #fff;
+  border: none;
+  border-radius: 8px 0 0 8px;
+  width: 48px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: -2px 2px 8px #4b6cb71a;
+  transition: background 0.2s;
+  padding: 0;
+  margin-top: 0;
+}
+#admin-toggle .vertical-text {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 1.1em;
+  letter-spacing: 0.1em;
+  font-weight: bold;
+  color: #fff;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* When admin panel is closed, let content fill the space */
+#admin-panel-container.closed ~ #app-content {
+  margin-right: 2em;
+}
+
+#control-panel {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px #4b6cb71a;
+  padding: 2em;
+  margin: 0 2em 2em 2em;
+  display: flex;
+  gap: 2em;
+  flex-wrap: wrap;
+}
+
+#admin-area, #status-area {
+  min-width: 260px;
+  flex: 1 1 260px;
+}
+
+#admin-area h3, #status-area h3 {
+  margin-top: 0;
+  font-size: 1.1em;
+  color: #4b6cb7;
+}
+
+#admin-controls button {
+  margin-right: 0.5em;
+  margin-bottom: 0.5em;
+  padding: 0.5em 1.2em;
+  font-size: 1em;
+  border-radius: 5px;
+  border: 1px solid #bfc6e0;
+  background: #f5f7fa;
+  color: #4b6cb7;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+#admin-controls button:hover {
+  background: #e3e8f7;
+  color: #222;
+}
+
+#config-viewer {
+  font-size: 0.95em;
+  max-height: 300px;
+  overflow: auto;
+}
+
+#asset-list, #data-list {
+  margin-left: 2em;
+  margin-bottom: 1em;
+  font-size: 1em;
+}
+
+#asset-list h4, #data-list h4 {
+  margin: 0.5em 0 0.5em 0;
+  color: #4b6cb7;
+}
+
+#asset-list a, #data-list a {
+  color: #5a6dc6;
+  text-decoration: underline;
+  word-break: break-all;
+}
+
+#log-area {
+  margin-left: 2em;
+  margin-bottom: 2em;
+  font-size: 0.97em;
+  background: #f5f7fa;
+  border-radius: 6px;
+  padding: 1em;
+  color: #444;
+  min-height: 2em;
+  max-height: 200px;
+  overflow-y: auto;
+}
