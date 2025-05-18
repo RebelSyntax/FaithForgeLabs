@@ -1,0 +1,766 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FaithForge Labs</title>
+  
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f8f9fa;
+      color: #222;
+    }
+
+    header {
+      padding: 2rem 2rem 1rem;
+      background-color: #fff;
+      border-bottom: 1px solid #ddd;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    h2 {
+      font-size: 1.3rem;
+      margin: 1rem 0 0.5rem;
+    }
+
+    .section {
+      width: 100%;
+      max-width: 1400px;
+      margin: 2rem auto;
+      padding: 1rem 2rem;
+      background-color: #fff;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .collapsible-toggle {
+      cursor: pointer;
+      padding: 0.75rem 1rem;
+      font-weight: bold;
+      border-radius: 5px;
+      margin-bottom: 0.5rem;
+      border: 1px solid #ccc;
+      background-color: #f5f5f5;
+      transition: background 0.2s;
+    }
+
+    .collapsible-toggle:hover {
+      background-color: #e0e0e0;
+    }
+
+    .collapsible-content {
+      display: none;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: auto;
+      margin-top: 1rem;
+    }
+
+    th, td {
+      padding: 0.5rem;
+      border: 1px solid #ddd;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f0f0f0;
+      font-weight: bold;
+    }
+
+    img.thumb {
+      max-width: 64px;
+      height: auto;
+      display: block;
+      border-radius: 4px;
+    }
+
+    input[type="number"] {
+      width: 50px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 40px;
+    }
+  </style>
+  <script>
+    function toggleContent(id) {
+      const el = document.getElementById(id);
+      el.style.display = el.style.display === 'none' ? 'block' : 'none';
+    }
+  </script>
+
+</head>
+<body>
+  <header>
+    <h1>🔨 Build Guide: Prayer Focus Cube</h1>
+    <p><strong>FaithForge Labs – Local DIY Version</strong></p>
+  </header>
+
+  <div class="section">
+    <div class="collapsible-toggle" onclick="toggleContent('tools')">🧰 Tools & Parts Shopping List</div>
+    <div class="collapsible-content" id="tools" style="display:none;">
+      <div class="tools-section">
+    <h2>🔗 Tools & Parts Shopping List</h2>
+    <table>
+      <thead>
+        <tr><th>Category</th><th>Item</th><th>Recommended Product</th><th>Link</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Tool</td><td>Soldering Iron Kit</td><td>Weller WE1010NA</td><td><a href="https://www.amazon.com/dp/B07Z7Y1Y4F" target="_blank">Buy</a></td></tr>
+        <tr><td>Tool</td><td>Helping Hands + Magnifier</td><td>NEIKO Helping Hands Station</td><td><a href="https://www.amazon.com/dp/B0002KRABU" target="_blank">Buy</a></td></tr>
+        <tr><td>Tool</td><td>Multimeter</td><td>AstroAI Digital Multimeter</td><td><a href="https://www.amazon.com/dp/B01ISAMUA6" target="_blank">Buy</a></td></tr>
+        <tr><td>Tool</td><td>Wire Strippers</td><td>IRWIN VISE-GRIP</td><td><a href="https://www.amazon.com/dp/B000OQ21CA" target="_blank">Buy</a></td></tr>
+        <tr><td>3D Printer</td><td>Creality Ender 3 V3 SE</td><td>Entry-Level 3D Printer</td><td><a href="https://www.amazon.com/dp/B0C65ZX78J" target="_blank">Buy</a></td></tr>
+        <tr><td>Filament</td><td>PLA (Black/White)</td><td>Overture PLA 1.75mm</td><td><a href="https://www.amazon.com/dp/B07GX5X5L5" target="_blank">Buy</a></td></tr>
+        <tr><td>Component</td><td>ESP32 Dev Board</td><td>HiLetgo ESP-WROOM-32</td><td><a href="https://www.amazon.com/dp/B0718T232Z" target="_blank">Buy</a></td></tr>
+        <tr><td>Component</td><td>WS2812B LED Ring</td><td>DIYmall 24 Bit RGB</td><td><a href="https://www.amazon.com/dp/B00UUD6Y94" target="_blank">Buy</a></td></tr>
+        <tr><td>Component</td><td>0.96" OLED Display</td><td>HiLetgo I2C OLED</td><td><a href="https://www.amazon.com/dp/B01N4I4U8U" target="_blank">Buy</a></td></tr>
+        <tr><td>Component</td><td>Push Button Switch</td><td>Uxcell 10-pack</td><td><a href="https://www.amazon.com/dp/B08N1ZJ6HH" target="_blank">Buy</a></td></tr>
+        <tr><td>Component</td><td>USB Cable</td><td>Amazon Basics USB-C</td><td><a href="https://www.amazon.com/dp/B00NH13UFQ" target="_blank">Buy</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="collapsible-toggle" onclick="toggleContent('steps')">🧱 Step-by-Step Build Guide</div>
+    <div class="collapsible-content" id="steps" style="display:none;">
+      <div id="steps"></div>
+
+  <script>
+    const steps = [
+      { title: "Workspace Prep", description: "Clear a 3x3 ft table near power, add good lighting.", image: "assets/placeholder_1.jpg" },
+      { title: "Tool Purchase", description: "Get your soldering, stripping, and testing tools.", image: "assets/placeholder_2.jpg" },
+      { title: "3D Printing Setup", description: "Set up your 3D printer and install slicing software.", image: "assets/placeholder_3.jpg" },
+      { title: "Component Purchase", description: "Order ESP32, LEDs, OLED, buttons, etc.", image: "assets/placeholder_4.jpg" },
+      { title: "Firmware Environment", description: "Install Arduino IDE and add ESP32 board support.", image: "assets/placeholder_5.jpg" },
+      { title: "3D Print Case", description: "Download STL and print the cube enclosure.", image: "assets/placeholder_1.jpg" },
+      { title: "Circuit Assembly", description: "Wire and solder components to the ESP32.", image: "assets/placeholder_2.jpg" },
+      { title: "Code Flashing", description: "Upload firmware for focus timer + verse cycle.", image: "assets/placeholder_3.jpg" },
+      { title: "AI Content Generation", description: "Run script to generate custom verses.", image: "assets/placeholder_4.jpg" },
+      { title: "Content Storage", description: "Save data to EEPROM or microSD (if used).", image: "assets/placeholder_5.jpg" },
+      { title: "Enclosure Assembly", description: "Secure electronics into printed case.", image: "assets/placeholder_1.jpg" },
+      { title: "Packaging", description: "Box product with devotional card & thank-you insert.", image: "assets/placeholder_2.jpg" }
+    ];
+
+    const container = document.getElementById('steps');
+    steps.forEach((step, index) => {
+      const div = document.createElement('div');
+      div.className = 'step';
+      div.innerHTML = `
+        <label><input type="checkbox"> Step ${index + 1}: ${step.title}</label>
+        <p>${step.description}</p>
+        <textarea class="notes" rows="3" placeholder="Notes for this step..."></textarea>
+        <div class="image-slot">
+          <img src="${step.image}" alt="${step.title} Image" onerror="this.style.display='none';" />
+        </div>
+      `;
+      container.appendChild(div);
+    });
+  </script>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="collapsible-toggle" onclick="toggleContent('logos')">🔥 Logo Evaluation</div>
+    <div class="collapsible-content" id="logos" style="display:block;">
+      <p>Use this table to evaluate and take notes on each logo. You can enter scores (1–10) for each category and add personal notes. Save the HTML file after editing and send it back to share your selections.</p>
+      
+<table>
+  <thead>
+    <tr>
+      <th>Thumbnail</th>
+      <th>Filename</th>
+      <th>Icon Clarity</th>
+      <th>Typography</th>
+      <th>Balance</th>
+      <th>Scalability</th>
+      <th>Faith-Tech Fusion</th>
+      <th>Originality</th>
+      <th>Emotional Impact</th>
+      <th>Total</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+        <tr>
+          <td><a href="logo/45f0b61f-c6a8-473c-ae1c-21045003661c.png" target="_blank"><img src="logo/45f0b61f-c6a8-473c-ae1c-21045003661c.png" class="thumb" alt="45f0b61f-c6a8-473c-ae1c-21045003661c.png"></a></td>
+          <td>45f0b61f-c6a8-473c-ae1c-21045003661c.png</td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td>67</td>
+          <td><textarea placeholder="Your notes..."></textarea></td>
+        </tr>
+    
+        <tr>
+          <td><a href="logo/99d16b61-cb4b-4219-9bbc-b27de18eac88.png" target="_blank"><img src="logo/99d16b61-cb4b-4219-9bbc-b27de18eac88.png" class="thumb" alt="99d16b61-cb4b-4219-9bbc-b27de18eac88.png"></a></td>
+          <td>99d16b61-cb4b-4219-9bbc-b27de18eac88.png</td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="8" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td><input type="number" min="1" max="10" value="8" /></td>
+          <td>63</td>
+          <td><textarea placeholder="Your notes..."></textarea></td>
+        </tr>
+    
+        <tr>
+          <td><a href="logo/9cad344e-1c43-4fff-ad18-19b88459fb4f.png" target="_blank"><img src="logo/9cad344e-1c43-4fff-ad18-19b88459fb4f.png" class="thumb" alt="9cad344e-1c43-4fff-ad18-19b88459fb4f.png"></a></td>
+          <td>9cad344e-1c43-4fff-ad18-19b88459fb4f.png</td>
+          <td><input type="number" min="1" max="10" value="8" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td>63</td>
+          <td><textarea placeholder="Your notes..."></textarea></td>
+        </tr>
+    
+        <tr>
+          <td><a href="logo/99c813f3-7d33-47cb-9dde-82ddec820e7a.png" target="_blank"><img src="logo/99c813f3-7d33-47cb-9dde-82ddec820e7a.png" class="thumb" alt="99c813f3-7d33-47cb-9dde-82ddec820e7a.png"></a></td>
+          <td>99c813f3-7d33-47cb-9dde-82ddec820e7a.png</td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="8" /></td>
+          <td><input type="number" min="1" max="10" value="8" /></td>
+          <td><input type="number" min="1" max="10" value="8" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td>61</td>
+          <td><textarea placeholder="Your notes..."></textarea></td>
+        </tr>
+    
+        <tr>
+          <td><a href="logo/e90495b3-ac07-4cc6-9751-494217c86e1d.png" target="_blank"><img src="logo/e90495b3-ac07-4cc6-9751-494217c86e1d.png" class="thumb" alt="e90495b3-ac07-4cc6-9751-494217c86e1d.png"></a></td>
+          <td>e90495b3-ac07-4cc6-9751-494217c86e1d.png</td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td>61</td>
+          <td><textarea placeholder="Your notes..."></textarea></td>
+        </tr>
+    
+        <tr>
+          <td><a href="logo/952a9b27-06bd-488e-8b1e-dd97e816297a.png" target="_blank"><img src="logo/952a9b27-06bd-488e-8b1e-dd97e816297a.png" class="thumb" alt="952a9b27-06bd-488e-8b1e-dd97e816297a.png"></a></td>
+          <td>952a9b27-06bd-488e-8b1e-dd97e816297a.png</td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="8" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td>61</td>
+          <td><textarea placeholder="Your notes..."></textarea></td>
+        </tr>
+    
+        <tr>
+          <td><a href="logo/6e52850d-7c4c-4172-937f-7950713fad01.png" target="_blank"><img src="logo/6e52850d-7c4c-4172-937f-7950713fad01.png" class="thumb" alt="6e52850d-7c4c-4172-937f-7950713fad01.png"></a></td>
+          <td>6e52850d-7c4c-4172-937f-7950713fad01.png</td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td>60</td>
+          <td><textarea placeholder="Your notes..."></textarea></td>
+        </tr>
+    
+        <tr>
+          <td><a href="logo/5a1d5221-cefa-4872-a50f-b50ae261ccb6.png" target="_blank"><img src="logo/5a1d5221-cefa-4872-a50f-b50ae261ccb6.png" class="thumb" alt="5a1d5221-cefa-4872-a50f-b50ae261ccb6.png"></a></td>
+          <td>5a1d5221-cefa-4872-a50f-b50ae261ccb6.png</td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td><input type="number" min="1" max="10" value="8" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td>60</td>
+          <td><textarea placeholder="Your notes..."></textarea></td>
+        </tr>
+    
+        <tr>
+          <td><a href="logo/c3f1f0b8-970e-4fd6-9453-59610f4cb436.png" target="_blank"><img src="logo/c3f1f0b8-970e-4fd6-9453-59610f4cb436.png" class="thumb" alt="c3f1f0b8-970e-4fd6-9453-59610f4cb436.png"></a></td>
+          <td>c3f1f0b8-970e-4fd6-9453-59610f4cb436.png</td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="8" /></td>
+          <td><input type="number" min="1" max="10" value="8" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td>59</td>
+          <td><textarea placeholder="Your notes..."></textarea></td>
+        </tr>
+    
+        <tr>
+          <td><a href="logo/72c2a28e-f778-47ea-a11e-cb99bf5134a7.png" target="_blank"><img src="logo/72c2a28e-f778-47ea-a11e-cb99bf5134a7.png" class="thumb" alt="72c2a28e-f778-47ea-a11e-cb99bf5134a7.png"></a></td>
+          <td>72c2a28e-f778-47ea-a11e-cb99bf5134a7.png</td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td>59</td>
+          <td><textarea placeholder="Your notes..."></textarea></td>
+        </tr>
+    
+        <tr>
+          <td><a href="logo/6794f25c-a3ac-4ebf-a9d2-187859586c1a.png" target="_blank"><img src="logo/6794f25c-a3ac-4ebf-a9d2-187859586c1a.png" class="thumb" alt="6794f25c-a3ac-4ebf-a9d2-187859586c1a.png"></a></td>
+          <td>6794f25c-a3ac-4ebf-a9d2-187859586c1a.png</td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td><input type="number" min="1" max="10" value="8" /></td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td>58</td>
+          <td><textarea placeholder="Your notes..."></textarea></td>
+        </tr>
+    
+        <tr>
+          <td><a href="logo/cd896b2c-dbca-435e-b548-1b165409d963.png" target="_blank"><img src="logo/cd896b2c-dbca-435e-b548-1b165409d963.png" class="thumb" alt="cd896b2c-dbca-435e-b548-1b165409d963.png"></a></td>
+          <td>cd896b2c-dbca-435e-b548-1b165409d963.png</td>
+          <td><input type="number" min="1" max="10" value="8" /></td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td>58</td>
+          <td><textarea placeholder="Your notes..."></textarea></td>
+        </tr>
+    
+        <tr>
+          <td><a href="logo/4f588b67-d202-4ab6-8ac2-6d876fff6786.png" target="_blank"><img src="logo/4f588b67-d202-4ab6-8ac2-6d876fff6786.png" class="thumb" alt="4f588b67-d202-4ab6-8ac2-6d876fff6786.png"></a></td>
+          <td>4f588b67-d202-4ab6-8ac2-6d876fff6786.png</td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="8" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td>56</td>
+          <td><textarea placeholder="Your notes..."></textarea></td>
+        </tr>
+    
+        <tr>
+          <td><a href="logo/b08e97a4-298f-4db8-8332-01d6714710e8.png" target="_blank"><img src="logo/b08e97a4-298f-4db8-8332-01d6714710e8.png" class="thumb" alt="b08e97a4-298f-4db8-8332-01d6714710e8.png"></a></td>
+          <td>b08e97a4-298f-4db8-8332-01d6714710e8.png</td>
+          <td><input type="number" min="1" max="10" value="8" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td>56</td>
+          <td><textarea placeholder="Your notes..."></textarea></td>
+        </tr>
+    
+        <tr>
+          <td><a href="logo/9d546e22-7fe4-4d5a-b2e3-2519a1ca54c0.png" target="_blank"><img src="logo/9d546e22-7fe4-4d5a-b2e3-2519a1ca54c0.png" class="thumb" alt="9d546e22-7fe4-4d5a-b2e3-2519a1ca54c0.png"></a></td>
+          <td>9d546e22-7fe4-4d5a-b2e3-2519a1ca54c0.png</td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="8" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td><input type="number" min="1" max="10" value="8" /></td>
+          <td>56</td>
+          <td><textarea placeholder="Your notes..."></textarea></td>
+        </tr>
+    
+        <tr>
+          <td><a href="logo/7d92ae55-3b28-4639-b30e-880d3c5cc57e.png" target="_blank"><img src="logo/7d92ae55-3b28-4639-b30e-880d3c5cc57e.png" class="thumb" alt="7d92ae55-3b28-4639-b30e-880d3c5cc57e.png"></a></td>
+          <td>7d92ae55-3b28-4639-b30e-880d3c5cc57e.png</td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="8" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td>56</td>
+          <td><textarea placeholder="Your notes..."></textarea></td>
+        </tr>
+    
+        <tr>
+          <td><a href="logo/5e32057a-fcc9-4914-b2bb-1b8a9d9c0e8a.png" target="_blank"><img src="logo/5e32057a-fcc9-4914-b2bb-1b8a9d9c0e8a.png" class="thumb" alt="5e32057a-fcc9-4914-b2bb-1b8a9d9c0e8a.png"></a></td>
+          <td>5e32057a-fcc9-4914-b2bb-1b8a9d9c0e8a.png</td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="8" /></td>
+          <td><input type="number" min="1" max="10" value="8" /></td>
+          <td><input type="number" min="1" max="10" value="8" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td>55</td>
+          <td><textarea placeholder="Your notes..."></textarea></td>
+        </tr>
+    
+        <tr>
+          <td><a href="logo/62ef73ce-edca-47a1-bcbb-d902489cf67d.png" target="_blank"><img src="logo/62ef73ce-edca-47a1-bcbb-d902489cf67d.png" class="thumb" alt="62ef73ce-edca-47a1-bcbb-d902489cf67d.png"></a></td>
+          <td>62ef73ce-edca-47a1-bcbb-d902489cf67d.png</td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td><input type="number" min="1" max="10" value="8" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td>55</td>
+          <td><textarea placeholder="Your notes..."></textarea></td>
+        </tr>
+    
+        <tr>
+          <td><a href="logo/3e97e28a-78cc-4ffe-804e-de93b553361d.png" target="_blank"><img src="logo/3e97e28a-78cc-4ffe-804e-de93b553361d.png" class="thumb" alt="3e97e28a-78cc-4ffe-804e-de93b553361d.png"></a></td>
+          <td>3e97e28a-78cc-4ffe-804e-de93b553361d.png</td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td>55</td>
+          <td><textarea placeholder="Your notes..."></textarea></td>
+        </tr>
+    
+        <tr>
+          <td><a href="logo/febc5399-d0fa-47f4-80a3-5c3ac0919d8d.png" target="_blank"><img src="logo/febc5399-d0fa-47f4-80a3-5c3ac0919d8d.png" class="thumb" alt="febc5399-d0fa-47f4-80a3-5c3ac0919d8d.png"></a></td>
+          <td>febc5399-d0fa-47f4-80a3-5c3ac0919d8d.png</td>
+          <td><input type="number" min="1" max="10" value="8" /></td>
+          <td><input type="number" min="1" max="10" value="8" /></td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="8" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="8" /></td>
+          <td>55</td>
+          <td><textarea placeholder="Your notes..."></textarea></td>
+        </tr>
+    
+        <tr>
+          <td><a href="logo/ab8ac8fb-dd28-46fa-85fc-d3db8fe28400.png" target="_blank"><img src="logo/ab8ac8fb-dd28-46fa-85fc-d3db8fe28400.png" class="thumb" alt="ab8ac8fb-dd28-46fa-85fc-d3db8fe28400.png"></a></td>
+          <td>ab8ac8fb-dd28-46fa-85fc-d3db8fe28400.png</td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="8" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td>54</td>
+          <td><textarea placeholder="Your notes..."></textarea></td>
+        </tr>
+    
+        <tr>
+          <td><a href="logo/811d39b1-4584-4d41-8524-cd97a4e8e3e1.png" target="_blank"><img src="logo/811d39b1-4584-4d41-8524-cd97a4e8e3e1.png" class="thumb" alt="811d39b1-4584-4d41-8524-cd97a4e8e3e1.png"></a></td>
+          <td>811d39b1-4584-4d41-8524-cd97a4e8e3e1.png</td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td>54</td>
+          <td><textarea placeholder="Your notes..."></textarea></td>
+        </tr>
+    
+        <tr>
+          <td><a href="logo/2dc3df01-b2b1-44ef-ad78-1b08ebabc232.png" target="_blank"><img src="logo/2dc3df01-b2b1-44ef-ad78-1b08ebabc232.png" class="thumb" alt="2dc3df01-b2b1-44ef-ad78-1b08ebabc232.png"></a></td>
+          <td>2dc3df01-b2b1-44ef-ad78-1b08ebabc232.png</td>
+          <td><input type="number" min="1" max="10" value="8" /></td>
+          <td><input type="number" min="1" max="10" value="8" /></td>
+          <td><input type="number" min="1" max="10" value="8" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="8" /></td>
+          <td>54</td>
+          <td><textarea placeholder="Your notes..."></textarea></td>
+        </tr>
+    
+        <tr>
+          <td><a href="logo/5e32057a-fcc9-4914-b2bb-1b8a9d9c0e8a (1).png" target="_blank"><img src="logo/5e32057a-fcc9-4914-b2bb-1b8a9d9c0e8a (1).png" class="thumb" alt="5e32057a-fcc9-4914-b2bb-1b8a9d9c0e8a (1).png"></a></td>
+          <td>5e32057a-fcc9-4914-b2bb-1b8a9d9c0e8a (1).png</td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="8" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td>54</td>
+          <td><textarea placeholder="Your notes..."></textarea></td>
+        </tr>
+    
+        <tr>
+          <td><a href="logo/92939181-8be1-471d-a13b-6bbe1d74b6dc.png" target="_blank"><img src="logo/92939181-8be1-471d-a13b-6bbe1d74b6dc.png" class="thumb" alt="92939181-8be1-471d-a13b-6bbe1d74b6dc.png"></a></td>
+          <td>92939181-8be1-471d-a13b-6bbe1d74b6dc.png</td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td>53</td>
+          <td><textarea placeholder="Your notes..."></textarea></td>
+        </tr>
+    
+        <tr>
+          <td><a href="logo/99680a96-a5c3-4bf7-b91b-8d0e12fbf861.png" target="_blank"><img src="logo/99680a96-a5c3-4bf7-b91b-8d0e12fbf861.png" class="thumb" alt="99680a96-a5c3-4bf7-b91b-8d0e12fbf861.png"></a></td>
+          <td>99680a96-a5c3-4bf7-b91b-8d0e12fbf861.png</td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="8" /></td>
+          <td><input type="number" min="1" max="10" value="8" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td>53</td>
+          <td><textarea placeholder="Your notes..."></textarea></td>
+        </tr>
+    
+        <tr>
+          <td><a href="logo/d193a63a-a3d0-49aa-acfb-c5c9dd81df66.png" target="_blank"><img src="logo/d193a63a-a3d0-49aa-acfb-c5c9dd81df66.png" class="thumb" alt="d193a63a-a3d0-49aa-acfb-c5c9dd81df66.png"></a></td>
+          <td>d193a63a-a3d0-49aa-acfb-c5c9dd81df66.png</td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td>53</td>
+          <td><textarea placeholder="Your notes..."></textarea></td>
+        </tr>
+    
+        <tr>
+          <td><a href="logo/429d06b0-b186-47a2-9a7e-71a0025529fd.png" target="_blank"><img src="logo/429d06b0-b186-47a2-9a7e-71a0025529fd.png" class="thumb" alt="429d06b0-b186-47a2-9a7e-71a0025529fd.png"></a></td>
+          <td>429d06b0-b186-47a2-9a7e-71a0025529fd.png</td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="8" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td>53</td>
+          <td><textarea placeholder="Your notes..."></textarea></td>
+        </tr>
+    
+        <tr>
+          <td><a href="logo/200d8983-c34f-4682-97ca-a79f7bc924eb.png" target="_blank"><img src="logo/200d8983-c34f-4682-97ca-a79f7bc924eb.png" class="thumb" alt="200d8983-c34f-4682-97ca-a79f7bc924eb.png"></a></td>
+          <td>200d8983-c34f-4682-97ca-a79f7bc924eb.png</td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="8" /></td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="8" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td>53</td>
+          <td><textarea placeholder="Your notes..."></textarea></td>
+        </tr>
+    
+        <tr>
+          <td><a href="logo/62ef73ce-edca-47a1-bcbb-d902489cf67d (1).png" target="_blank"><img src="logo/62ef73ce-edca-47a1-bcbb-d902489cf67d (1).png" class="thumb" alt="62ef73ce-edca-47a1-bcbb-d902489cf67d (1).png"></a></td>
+          <td>62ef73ce-edca-47a1-bcbb-d902489cf67d (1).png</td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td>53</td>
+          <td><textarea placeholder="Your notes..."></textarea></td>
+        </tr>
+    
+        <tr>
+          <td><a href="logo/75816cdd-b8ef-454e-abf8-3d2ea1f7d6ea.png" target="_blank"><img src="logo/75816cdd-b8ef-454e-abf8-3d2ea1f7d6ea.png" class="thumb" alt="75816cdd-b8ef-454e-abf8-3d2ea1f7d6ea.png"></a></td>
+          <td>75816cdd-b8ef-454e-abf8-3d2ea1f7d6ea.png</td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="8" /></td>
+          <td><input type="number" min="1" max="10" value="8" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td>53</td>
+          <td><textarea placeholder="Your notes..."></textarea></td>
+        </tr>
+    
+        <tr>
+          <td><a href="logo/ae43fade-62b0-4307-bbb9-f84c9ac23dab.png" target="_blank"><img src="logo/ae43fade-62b0-4307-bbb9-f84c9ac23dab.png" class="thumb" alt="ae43fade-62b0-4307-bbb9-f84c9ac23dab.png"></a></td>
+          <td>ae43fade-62b0-4307-bbb9-f84c9ac23dab.png</td>
+          <td><input type="number" min="1" max="10" value="8" /></td>
+          <td><input type="number" min="1" max="10" value="8" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td>52</td>
+          <td><textarea placeholder="Your notes..."></textarea></td>
+        </tr>
+    
+        <tr>
+          <td><a href="logo/29791c9a-f2ae-4bb9-97e6-8136cb5ae6ca.png" target="_blank"><img src="logo/29791c9a-f2ae-4bb9-97e6-8136cb5ae6ca.png" class="thumb" alt="29791c9a-f2ae-4bb9-97e6-8136cb5ae6ca.png"></a></td>
+          <td>29791c9a-f2ae-4bb9-97e6-8136cb5ae6ca.png</td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td>52</td>
+          <td><textarea placeholder="Your notes..."></textarea></td>
+        </tr>
+    
+        <tr>
+          <td><a href="logo/f1c39018-3258-4533-b848-657f07cc44f7.png" target="_blank"><img src="logo/f1c39018-3258-4533-b848-657f07cc44f7.png" class="thumb" alt="f1c39018-3258-4533-b848-657f07cc44f7.png"></a></td>
+          <td>f1c39018-3258-4533-b848-657f07cc44f7.png</td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td>52</td>
+          <td><textarea placeholder="Your notes..."></textarea></td>
+        </tr>
+    
+        <tr>
+          <td><a href="logo/aaa7a9e9-fee9-40fe-8f88-b7bc13ce4dea.png" target="_blank"><img src="logo/aaa7a9e9-fee9-40fe-8f88-b7bc13ce4dea.png" class="thumb" alt="aaa7a9e9-fee9-40fe-8f88-b7bc13ce4dea.png"></a></td>
+          <td>aaa7a9e9-fee9-40fe-8f88-b7bc13ce4dea.png</td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="8" /></td>
+          <td><input type="number" min="1" max="10" value="8" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td>51</td>
+          <td><textarea placeholder="Your notes..."></textarea></td>
+        </tr>
+    
+        <tr>
+          <td><a href="logo/2f9be9fb-d43c-4cb7-8e9a-2e08550a0811.png" target="_blank"><img src="logo/2f9be9fb-d43c-4cb7-8e9a-2e08550a0811.png" class="thumb" alt="2f9be9fb-d43c-4cb7-8e9a-2e08550a0811.png"></a></td>
+          <td>2f9be9fb-d43c-4cb7-8e9a-2e08550a0811.png</td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td>51</td>
+          <td><textarea placeholder="Your notes..."></textarea></td>
+        </tr>
+    
+        <tr>
+          <td><a href="logo/d0cf3c2d-d058-474b-95bd-0dfb8b615d6d.png" target="_blank"><img src="logo/d0cf3c2d-d058-474b-95bd-0dfb8b615d6d.png" class="thumb" alt="d0cf3c2d-d058-474b-95bd-0dfb8b615d6d.png"></a></td>
+          <td>d0cf3c2d-d058-474b-95bd-0dfb8b615d6d.png</td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="8" /></td>
+          <td><input type="number" min="1" max="10" value="10" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td>50</td>
+          <td><textarea placeholder="Your notes..."></textarea></td>
+        </tr>
+    
+        <tr>
+          <td><a href="logo/44367653-0630-4de2-ae91-3d9dc82f21be.png" target="_blank"><img src="logo/44367653-0630-4de2-ae91-3d9dc82f21be.png" class="thumb" alt="44367653-0630-4de2-ae91-3d9dc82f21be.png"></a></td>
+          <td>44367653-0630-4de2-ae91-3d9dc82f21be.png</td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="8" /></td>
+          <td><input type="number" min="1" max="10" value="8" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="9" /></td>
+          <td>49</td>
+          <td><textarea placeholder="Your notes..."></textarea></td>
+        </tr>
+    
+        <tr>
+          <td><a href="logo/ca359440-934e-4b7c-a5ac-6f0ad3759909.png" target="_blank"><img src="logo/ca359440-934e-4b7c-a5ac-6f0ad3759909.png" class="thumb" alt="ca359440-934e-4b7c-a5ac-6f0ad3759909.png"></a></td>
+          <td>ca359440-934e-4b7c-a5ac-6f0ad3759909.png</td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="8" /></td>
+          <td>46</td>
+          <td><textarea placeholder="Your notes..."></textarea></td>
+        </tr>
+    
+        <tr>
+          <td><a href="logo/4b11eeb3-359e-44f5-ba7b-1a9614b4ac5d.png" target="_blank"><img src="logo/4b11eeb3-359e-44f5-ba7b-1a9614b4ac5d.png" class="thumb" alt="4b11eeb3-359e-44f5-ba7b-1a9614b4ac5d.png"></a></td>
+          <td>4b11eeb3-359e-44f5-ba7b-1a9614b4ac5d.png</td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="8" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td><input type="number" min="1" max="10" value="7" /></td>
+          <td><input type="number" min="1" max="10" value="6" /></td>
+          <td>45</td>
+          <td><textarea placeholder="Your notes..."></textarea></td>
+        </tr>
+    
+  </tbody>
+</table>
+
+    </div>
+  </div>
+</body>
+</html>
