@@ -8,6 +8,10 @@ const applyBtn = document.getElementById('apply-config');
 const output = document.getElementById('output');
 const configSummary = document.getElementById('config-summary');
 
+// --- Folder handles cache ---
+const folderHandles = {};
+const folderFiles = {};
+
 // --- IndexedDB helpers ---
 function openDB() {
   return new Promise((resolve, reject) => {
@@ -54,7 +58,7 @@ function showError(msg) {
   loadBtn.style.display = 'inline-block';
 }
 function resetUI() {
-  output.textContent = 'Please load your POC folder to begin.';
+  output.textContent = 'Please load your App folder to begin.';
   document.getElementById('app-title').textContent = 'FaithForgeLabs App Loader';
   document.getElementById('tagline').textContent = '';
   document.getElementById('app-content').innerHTML = '';
@@ -77,12 +81,38 @@ function validateConfig(config) {
 
 // --- CONFIG SUMMARY ---
 function showConfigSummary(config) {
-  configSummary.innerHTML = `
+  let summary = `
     <strong>App Title:</strong> ${config.appTitle}<br>
     <strong>Tagline:</strong> ${config.tagline || "(none)"}<br>
     <strong>Scripts:</strong> ${config.scripts.join(", ")}<br>
   `;
+
+  for (const [key, files] of Object.entries(folderFiles)) {
+    const folderId = `folder-summary-${key}`;
+    summary += `
+      <div style="margin-top:0.5em;">
+        <button type="button" class="folder-toggle" data-target="${folderId}" style="background:none;border:none;color:#5a6dc6;cursor:pointer;font-weight:bold;">
+          ${key.charAt(0).toUpperCase() + key.slice(1)} Folder
+        </button>
+        <ul id="${folderId}" style="margin:0.2em 0 0.5em 1.5em; font-size:0.97em; display:none;">
+          ${files.length
+            ? files.map(f => `<li>${f}</li>`).join("")
+            : "<li style='color:#b71c1c;'>No files found</li>"}
+        </ul>
+      </div>
+    `;
+  }
+
+  configSummary.innerHTML = summary;
   configSummary.style.display = 'block';
+
+  // Add toggle logic
+  configSummary.querySelectorAll('.folder-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const ul = configSummary.querySelector(`#${btn.dataset.target}`);
+      if (ul) ul.style.display = ul.style.display === 'none' ? 'block' : 'none';
+    });
+  });
 }
 
 // --- MAIN LOADER FLOW ---
@@ -112,11 +142,34 @@ async function loadApp(root) {
       await clearSavedHandle();
       return;
     }
-    showConfigSummary(config);
+
+    // --- Dynamically get handles for all folders in config ---
+    Object.keys(folderHandles).forEach(k => delete folderHandles[k]);
+    Object.keys(folderFiles).forEach(k => delete folderFiles[k]);
+    for (const [key, folderName] of Object.entries(config.folders || {})) {
+      try {
+        const dirHandle = await root.getDirectoryHandle(folderName);
+        folderHandles[key] = dirHandle;
+
+        // List files in this directory
+        folderFiles[key] = [];
+        for await (const entry of dirHandle.values()) {
+          if (entry.kind === 'file') {
+            folderFiles[key].push(entry.name);
+          }
+        }
+      } catch (e) {
+        showError(`Folder "${folderName}" for "${key}" could not be found. Please check your folder structure.`);
+        await clearSavedHandle();
+        return;
+      }
+    }
+
+    // After successful folder/config load, but before apply:
     pendingConfig = config;
     pendingRoot = root;
-    applyBtn.style.display = 'inline-block';
-    output.textContent = 'Review the configuration above. Click "Apply Config" to continue.';
+    window.appConfig = config;
+    setAppState('review');
   } catch (err) {
     showError('Error: ' + err);
     setAppState('error');
@@ -148,10 +201,9 @@ applyBtn.addEventListener('click', async () => {
       await clearSavedHandle();
       return;
     }
-    let scriptsDir;
-    try {
-      scriptsDir = await pendingRoot.getDirectoryHandle(pendingConfig.folders.scripts);
-    } catch (e) {
+    // Use the cached scripts folder handle
+    let scriptsDir = folderHandles.scripts;
+    if (!scriptsDir) {
       showError(`Scripts folder "${pendingConfig.folders.scripts}" not found! Please load the correct folder.`);
       await clearSavedHandle();
       return;
@@ -189,17 +241,30 @@ applyBtn.addEventListener('click', async () => {
 
 // --- UI STATE MGMT ---
 function setAppState(state) {
+  document.body.classList.remove('unloaded', 'review', 'loaded', 'error', 'admin-open');
   if (state === 'unloaded') {
+    document.body.classList.add('unloaded', 'admin-open');
     loadBtn.style.display = 'inline-block';
     resetBtn.style.display = 'none';
     if (applyBtn) applyBtn.style.display = 'none';
     resetUI();
+  } else if (state === 'review') {
+    document.body.classList.add('review', 'admin-open');
+    loadBtn.style.display = 'none';
+    resetBtn.style.display = 'inline-block';
+    if (applyBtn) applyBtn.style.display = 'inline-block';
+    output.textContent = 'Review the configuration above. Click "Apply Config" to continue.';
+    showConfigSummary(window.appConfig);
   } else if (state === 'loaded') {
+    document.body.classList.add('loaded');
+    document.body.classList.remove('admin-open');
     loadBtn.style.display = 'none';
     resetBtn.style.display = 'inline-block';
     if (applyBtn) applyBtn.style.display = 'none';
     output.textContent = '';
+    if (window.appConfig) showConfigSummary(window.appConfig);
   } else if (state === 'error') {
+    document.body.classList.add('error', 'admin-open');
     loadBtn.style.display = 'inline-block';
     resetBtn.style.display = 'inline-block';
     if (applyBtn) applyBtn.style.display = 'none';
@@ -224,7 +289,7 @@ resetBtn.addEventListener('click', async () => {
 window.addEventListener('DOMContentLoaded', async () => {
   const savedHandle = await getSavedHandle();
   if (savedHandle && await verifyPermission(savedHandle)) {
-    await loadApp(savedHandle);
+    await loadApp(savedHandle); // This should end in setAppState('review')
   } else {
     setAppState('unloaded');
   }

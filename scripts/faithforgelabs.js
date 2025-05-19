@@ -1,12 +1,3 @@
-let rootHandle = null;
-
-async function verifyPermission(handle, mode = 'readwrite') {
-  const options = { mode };
-  if ((await handle.queryPermission(options)) === 'granted') return true;
-  if ((await handle.requestPermission(options)) === 'granted') return true;
-  return false;
-}
-
 function toggleContent(id) {
   // Close all other sections and remove active-header
   document.querySelectorAll('.collapsible-content').forEach(content => {
@@ -188,70 +179,8 @@ async function loadTemplates(root) {
 
   setupToggles();
   await renderGuideSteps(root);
-  await renderLogoReview(root); // <-- Add this line
+  await renderLogoReview(root);
 }
 
-document.getElementById("load-folder").addEventListener("click", async () => {
-  try {
-    rootHandle = await window.showDirectoryPicker({ mode: 'readwrite' });
-    if (await verifyPermission(rootHandle)) {
-      await saveHandle(rootHandle);
-      await loadTemplates(rootHandle);
-      // Hide the load button
-      document.getElementById("load-folder").style.display = "none";
-    } else {
-      alert('Permission denied for folder access.');
-    }
-  } catch (err) {
-    console.error(err);
-    alert('Failed to load folder.');
-  }
-});
-
-const DB_NAME = 'faithforge-db';
-const STORE_NAME = 'handles';
-
-function openDB() {
-  return new Promise((resolve, reject) => {
-    const req = indexedDB.open(DB_NAME, 1);
-    req.onupgradeneeded = function(event) {
-      const db = event.target.result;
-      if (!db.objectStoreNames.contains(STORE_NAME)) {
-        db.createObjectStore(STORE_NAME);
-      }
-    };
-    req.onsuccess = () => resolve(req.result);
-    req.onerror = () => reject(req.error);
-  });
-}
-
-async function saveHandle(handle) {
-  const db = await openDB();
-  const tx = db.transaction(STORE_NAME, 'readwrite');
-  tx.objectStore(STORE_NAME).put(handle, 'root');
-  return tx.complete;
-}
-
-async function getSavedHandle() {
-  const db = await openDB();
-  return new Promise(resolve => {
-    const tx = db.transaction(STORE_NAME, 'readonly');
-    const req = tx.objectStore(STORE_NAME).get('root');
-    req.onsuccess = () => resolve(req.result);
-    req.onerror = () => resolve(null);
-  });
-}
-
-window.addEventListener('DOMContentLoaded', async () => {
-  const loadBtn = document.getElementById("load-folder");
-  const app = document.getElementById("app");
-  const savedHandle = await getSavedHandle();
-  if (savedHandle && await verifyPermission(savedHandle)) {
-    rootHandle = savedHandle;
-    await loadTemplates(rootHandle);
-    // Button and text stay hidden
-  } else {
-    loadBtn.style.display = "";
-    app.innerHTML = '<p>Please load your FaithForgeLabs folder to begin.</p>';
-  }
-});
+// No loader, IndexedDB, or permission logic here anymore!
+// The loader will call loadTemplates(rootHandle) as needed.

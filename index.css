@@ -116,11 +116,13 @@ body {
 }
 
 #config-summary {
-  margin-bottom: 1em;
+  max-height: 260px;
+  overflow-y: auto;
   background: #f5f7fa;
   border-radius: 6px;
   padding: 1em;
-  font-size: 0.95em;
+  font-size: 0.97em;
+  margin-bottom: 1em;
 }
 
 #output {
@@ -254,4 +256,9 @@ body {
   min-height: 2em;
   max-height: 200px;
   overflow-y: auto;
+}
+
+/* Force admin panel open when .admin-open is on body */
+body.admin-open #admin-panel-container {
+  transform: translateX(0) !important;
 }
