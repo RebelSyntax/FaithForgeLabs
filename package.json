@@ -1,7 +1,7 @@
 {
   "name": "faithforgelabs",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "remap": "echo \"Error: no test specified\" && exit 1"
   },

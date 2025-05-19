@@ -1,0 +1,40 @@
+/* FaithForgeLabs App Scoped Styles */
+#app-content .faithforge-app {
+  /* Example: style all app content */
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #fffbe7;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px #e0e4ef33;
+  padding: 2em;
+  color: #2d3559;
+}
+
+#app-content .faithforge-app h2 {
+  color: #b77c2b;
+  margin-top: 1.5em;
+}
+
+#app-content .faithforge-app .step {
+  border-left: 4px solid #b77c2b;
+  margin-bottom: 1.5em;
+  padding-left: 1em;
+  background: #fff9e0;
+  border-radius: 6px;
+}
+
+#app-content .faithforge-app .notes {
+  width: 100%;
+  min-height: 40px;
+  border-radius: 4px;
+  border: 1px solid #e0e4ef;
+  margin-top: 0.5em;
+  padding: 0.5em;
+  font-size: 1em;
+}
+
+#app-content .faithforge-app .image-slot img {
+  max-width: 120px;
+  border-radius: 6px;
+  margin-top: 0.5em;
+  box-shadow: 0 2px 8px #b77c2b22;
+}

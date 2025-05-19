@@ -1,20 +1,17 @@
-function toggleContent(id) {
-  // Close all other sections and remove active-header
-  document.querySelectorAll('.collapsible-content').forEach(content => {
+function toggleContent(id, root=document) {
+  root.querySelectorAll('.collapsible-content').forEach(content => {
     if (content.id !== id) {
       content.classList.remove('open');
-      const toggle = document.querySelector(`.collapsible-toggle[data-target="${content.id}"]`);
+      const toggle = root.querySelector(`.collapsible-toggle[data-target="${content.id}"]`);
       if (toggle) toggle.classList.remove('active-header');
     }
   });
-  // Toggle the selected section
-  const content = document.getElementById(id);
-  const toggle = document.querySelector(`.collapsible-toggle[data-target="${id}"]`);
+  const content = root.getElementById ? root.getElementById(id) : root.querySelector(`#${id}`);
+  const toggle = root.querySelector(`.collapsible-toggle[data-target="${id}"]`);
   if (content) {
     content.classList.toggle('open');
     if (toggle) toggle.classList.toggle('active-header', content.classList.contains('open'));
     if (content.classList.contains('open')) {
-      // Move the parent section to the end
       const section = content.closest('section');
       if (section && section.parentNode) {
         section.parentNode.appendChild(section);
@@ -23,29 +20,27 @@ function toggleContent(id) {
   }
 }
 
-function setupToggles() {
-  document.querySelectorAll('.collapsible-toggle').forEach(toggle => {
+function setupToggles(root=document) {
+  root.querySelectorAll('.collapsible-toggle').forEach(toggle => {
     const id = toggle.getAttribute("data-target");
     if (!id) return;
 
     // Prevent duplicate listeners on reload
     if (toggle._bound) return;
-    toggle.addEventListener("click", () => toggleContent(id));
+    toggle.addEventListener("click", () => toggleContent(id, root));
     toggle._bound = true;
   });
 }
 
-async function renderGuideSteps(root) {
+async function renderGuideSteps(root, domRoot=document) {
   try {
-    // Get the config file
     const configDir = await root.getDirectoryHandle("configs");
     const appDir = await configDir.getDirectoryHandle("app");
     const stepsFile = await appDir.getFileHandle("guide_steps.json");
     const stepsJson = await stepsFile.getFile();
     const steps = JSON.parse(await stepsJson.text());
 
-    // Render steps
-    const container = document.getElementById('steps-list');
+    const container = domRoot.getElementById ? domRoot.getElementById('steps-list') : domRoot.querySelector('#steps-list');
     if (container) {
       container.innerHTML = '';
       steps.forEach((step, index) => {
@@ -67,7 +62,7 @@ async function renderGuideSteps(root) {
   }
 }
 
-async function renderLogoReview(root) {
+async function renderLogoReview(root, domRoot=document) {
   try {
     const configDir = await root.getDirectoryHandle("configs");
     const appDir = await configDir.getDirectoryHandle("app");
@@ -86,8 +81,8 @@ async function renderLogoReview(root) {
     });
 
     // Render table headers
-    const thead = document.getElementById('logo-review-thead');
-    const tbody = document.getElementById('logo-review-tbody');
+    const thead = domRoot.getElementById ? domRoot.getElementById('logo-review-thead') : domRoot.querySelector('#logo-review-thead');
+    const tbody = domRoot.getElementById ? domRoot.getElementById('logo-review-tbody') : domRoot.querySelector('#logo-review-tbody');
     if (thead && tbody) {
       // First header row: categories
       let categoryRow = `<tr>
@@ -157,9 +152,34 @@ async function renderLogoReview(root) {
 }
 
 // Call this after loading templates
-async function loadTemplates(root) {
-  const app = document.getElementById("app");
+async function loadTemplates(root, config, appContext) {
+  const app = document.getElementById("app-content");
   app.innerHTML = '';
+
+  // Attach shadow root if not already present
+  let shadow = app.shadowRoot;
+  if (!shadow) {
+    shadow = app.attachShadow({ mode: 'open' });
+  } else {
+    shadow.innerHTML = '';
+  }
+
+  // Always load these stylesheets from the styles folder into shadow root
+  if (appContext && appContext.folderHandles && appContext.folderHandles.styles) {
+    const stylesDir = appContext.folderHandles.styles;
+    const styleFiles = ["style.css"]; // Add more filenames as needed
+    for (const styleFile of styleFiles) {
+      try {
+        const cssFile = await stylesDir.getFileHandle(styleFile);
+        const css = await (await cssFile.getFile()).text();
+        const styleTag = document.createElement('style');
+        styleTag.textContent = css;
+        shadow.appendChild(styleTag);
+      } catch (e) {
+        console.warn(`Could not load style: ${styleFile}`, e);
+      }
+    }
+  }
 
   const templateFiles = ["title.html", "tools.html", "guide.html", "logo-review.html"];
   const templateDir = await root.getDirectoryHandle("templates");
@@ -171,16 +191,18 @@ async function loadTemplates(root) {
       const html = await file.text();
       const section = document.createElement('section');
       section.innerHTML = html;
-      app.appendChild(section);
+      shadow.appendChild(section);
     } catch (err) {
       console.warn(`Failed to load ${name}:`, err);
     }
   }
 
-  setupToggles();
-  await renderGuideSteps(root);
-  await renderLogoReview(root);
+  setupToggles(shadow);
+  await renderGuideSteps(root, shadow);
+  await renderLogoReview(root, shadow);
 }
 
-// No loader, IndexedDB, or permission logic here anymore!
-// The loader will call loadTemplates(rootHandle) as needed.
+// Entry point for the loader: attach to appContext, not window/global
+appContext.enterhere = function(root, config, appContext) {
+  loadTemplates(root, config, appContext);
+};

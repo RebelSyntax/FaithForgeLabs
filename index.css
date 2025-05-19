@@ -8,17 +8,17 @@ body {
 #branding {
   display: flex;
   align-items: center;
-  gap: 2em;
-  margin: 3em 2em 2em 2em;
-  min-height: 120px;
+  gap: 1em;
+  margin: 1.5em 1.5em 1em 1.5em; /* Reduced top/bottom margin */
+  min-height: 80px;
 }
 
 #logo {
-  width: 96px;
-  height: 96px;
-  border-radius: 18px;
-  margin-right: 2em;
-  box-shadow: 0 4px 16px #4b6cb71a;
+  width: 72px;
+  height: 72px;
+  border-radius: 12px;
+  margin-right: 1em;
+  box-shadow: 0 2px 8px #4b6cb71a;
   background: #fff;
   display: flex;
   align-items: center;
@@ -27,25 +27,25 @@ body {
 }
 
 #logo img, #branding-logo {
-  height: 96px;
-  width: 96px;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px #4b6cb733;
+  height: 72px;
+  width: 72px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px #4b6cb733;
   object-fit: contain;
   display: block;
 }
 
 #app-title {
-  font-size: 2.2em;
+  font-size: 1.5em;
   font-weight: bold;
   color: #5a6dc6;
   letter-spacing: 1px;
 }
 
 #tagline {
-  margin-left: 110px;
-  margin-bottom: 1.5em;
-  font-size: 1.15em;
+  margin-left: 80px;
+  margin-bottom: 0.7em;
+  font-size: 1em;
   color: #4b6cb7;
   font-style: italic;
 }
@@ -73,13 +73,13 @@ body {
   background: #fff;
   border-radius: 12px 0 0 12px;
   box-shadow: -2px 0 16px #4b6cb71a;
-  padding: 2em 2em 2em 2em;
-  min-width: 320px;
-  max-width: 360px;
+  padding: 1.2em 1.2em 1.2em 1.2em; /* Reduced padding */
+  min-width: 260px;
+  max-width: 320px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.7em;
+  gap: 0.5em;
   margin-top: 0;
 }
 
@@ -116,20 +116,20 @@ body {
 }
 
 #config-summary {
-  max-height: 260px;
+  max-height: 180px;
   overflow-y: auto;
   background: #f5f7fa;
   border-radius: 6px;
-  padding: 1em;
-  font-size: 0.97em;
-  margin-bottom: 1em;
+  padding: 0.7em;
+  font-size: 0.95em;
+  margin-bottom: 0.7em;
 }
 
 #output {
   color: #b71c1c;
-  min-height: 2em;
-  font-size: 1em;
-  margin-bottom: 0.5em;
+  min-height: 1.5em;
+  font-size: 0.97em;
+  margin-bottom: 0.3em;
 }
 
 #app-content {
@@ -186,29 +186,29 @@ body {
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 2px 8px #4b6cb71a;
-  padding: 2em;
-  margin: 0 2em 2em 2em;
+  padding: 1.2em;
+  margin: 0 1.5em 1.5em 1.5em;
   display: flex;
-  gap: 2em;
+  gap: 1.2em;
   flex-wrap: wrap;
 }
 
 #admin-area, #status-area {
-  min-width: 260px;
-  flex: 1 1 260px;
+  min-width: 180px;
+  flex: 1 1 180px;
 }
 
 #admin-area h3, #status-area h3 {
   margin-top: 0;
-  font-size: 1.1em;
+  font-size: 1em;
   color: #4b6cb7;
 }
 
 #admin-controls button {
-  margin-right: 0.5em;
-  margin-bottom: 0.5em;
-  padding: 0.5em 1.2em;
-  font-size: 1em;
+  margin-right: 0.3em;
+  margin-bottom: 0.3em;
+  padding: 0.4em 1em;
+  font-size: 0.97em;
   border-radius: 5px;
   border: 1px solid #bfc6e0;
   background: #f5f7fa;
@@ -223,15 +223,15 @@ body {
 }
 
 #config-viewer {
-  font-size: 0.95em;
-  max-height: 300px;
+  font-size: 0.93em;
+  max-height: 220px;
   overflow: auto;
 }
 
 #asset-list, #data-list {
-  margin-left: 2em;
-  margin-bottom: 1em;
-  font-size: 1em;
+  margin-left: 1em;
+  margin-bottom: 0.7em;
+  font-size: 0.97em;
 }
 
 #asset-list h4, #data-list h4 {
@@ -246,15 +246,15 @@ body {
 }
 
 #log-area {
-  margin-left: 2em;
-  margin-bottom: 2em;
-  font-size: 0.97em;
+  margin-left: 1em;
+  margin-bottom: 1em;
+  font-size: 0.93em;
   background: #f5f7fa;
   border-radius: 6px;
-  padding: 1em;
+  padding: 0.7em;
   color: #444;
-  min-height: 2em;
-  max-height: 200px;
+  min-height: 1.5em;
+  max-height: 120px;
   overflow-y: auto;
 }
 

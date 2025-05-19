@@ -72,36 +72,39 @@ function validateConfig(config) {
   const errors = [];
   if (!config.folders || typeof config.folders.scripts !== "string" || !config.folders.scripts)
     errors.push('Missing or invalid "folders.scripts" (required, string).');
-  if (!Array.isArray(config.scripts) || config.scripts.length === 0 || !config.scripts.every(s => typeof s === "string"))
-    errors.push('Missing or invalid "scripts" (required, non-empty array of strings).');
   if (!config.appTitle || typeof config.appTitle !== "string")
     errors.push('Missing or invalid "appTitle" (required, string).');
+  if (!config.entryFunction || typeof config.entryFunction !== "string")
+    errors.push('Missing or invalid "entryFunction" (required, string).');
   return errors;
 }
 
 // --- CONFIG SUMMARY ---
 function showConfigSummary(config) {
   let summary = `
-    <strong>App Title:</strong> ${config.appTitle}<br>
-    <strong>Tagline:</strong> ${config.tagline || "(none)"}<br>
-    <strong>Scripts:</strong> ${config.scripts.join(", ")}<br>
+    <div style="border:1px solid #e0e4ef; box-shadow:0 2px 8px #e0e4ef33; border-radius:10px; padding:1.2em 1.5em; background:#fafdff; font-family:'Segoe UI',Arial,sans-serif;">
+      <div style="font-size:1.15em; font-weight:600; color:#2d3559; margin-bottom:0.5em;">App Title: <span style='font-weight:400;'>${config.appTitle}</span></div>
+      <div style="font-size:1em; color:#4a5278; margin-bottom:0.5em;"><strong>Tagline:</strong> <span style='font-weight:400;'>${config.tagline || "(none)"}</span></div>
+      <div style="margin-bottom:0.5em;">
   `;
 
   for (const [key, files] of Object.entries(folderFiles)) {
     const folderId = `folder-summary-${key}`;
     summary += `
       <div style="margin-top:0.5em;">
-        <button type="button" class="folder-toggle" data-target="${folderId}" style="background:none;border:none;color:#5a6dc6;cursor:pointer;font-weight:bold;">
+        <button type="button" class="folder-toggle" data-target="${folderId}" style="background:#f0f3fa;border:1px solid #dbe2f7;color:#5a6dc6;cursor:pointer;font-weight:600;padding:0.3em 0.9em;border-radius:6px;transition:background 0.2s;outline:none;margin-bottom:0.2em;">
           ${key.charAt(0).toUpperCase() + key.slice(1)} Folder
         </button>
-        <ul id="${folderId}" style="margin:0.2em 0 0.5em 1.5em; font-size:0.97em; display:none;">
+        <ul id="${folderId}" style="margin:0.2em 0 0.5em 1.5em; font-size:0.97em; display:none; list-style:square; color:#2d3559;">
           ${files.length
-            ? files.map(f => `<li>${f}</li>`).join("")
+            ? files.map(f => `<li style='margin-bottom:0.1em;'>${f}</li>`).join("")
             : "<li style='color:#b71c1c;'>No files found</li>"}
         </ul>
       </div>
     `;
   }
+
+  summary += '</div></div>';
 
   configSummary.innerHTML = summary;
   configSummary.style.display = 'block';
@@ -127,7 +130,6 @@ async function loadApp(root) {
       const configHandle = await root.getFileHandle('index-config.json');
       const configFile = await configHandle.getFile();
       config = JSON.parse(await configFile.text());
-      window.appConfig = config;
     } catch (e) {
       showError('Config not found or invalid! Please load the folder where your index-config.json file is located.');
       await clearSavedHandle();
@@ -168,7 +170,7 @@ async function loadApp(root) {
     // After successful folder/config load, but before apply:
     pendingConfig = config;
     pendingRoot = root;
-    window.appConfig = config;
+    // No more window.appConfig or window.folderHandles
     setAppState('review');
   } catch (err) {
     showError('Error: ' + err);
@@ -196,11 +198,6 @@ applyBtn.addEventListener('click', async () => {
       await clearSavedHandle();
       return;
     }
-    if (!pendingConfig.scripts || !Array.isArray(pendingConfig.scripts)) {
-      showError('Config is missing "scripts" array! Please load the correct folder.');
-      await clearSavedHandle();
-      return;
-    }
     // Use the cached scripts folder handle
     let scriptsDir = folderHandles.scripts;
     if (!scriptsDir) {
@@ -208,30 +205,48 @@ applyBtn.addEventListener('click', async () => {
       await clearSavedHandle();
       return;
     }
+    let scriptFiles = (folderFiles.scripts || []).slice().sort(); // Alphabetical order
+    if (!scriptFiles.length) {
+      showError('No scripts found in the scripts folder!');
+      await clearSavedHandle();
+      return;
+    }
     let combinedCode = '';
-    for (const scriptName of pendingConfig.scripts) {
+    for (const scriptName of scriptFiles) {
       try {
         const fileHandle = await scriptsDir.getFileHandle(scriptName);
         const file = await fileHandle.getFile();
         const code = await file.text();
         combinedCode += '\n' + code;
       } catch (e) {
-        showError(`Failed to load script: ${scriptName}. Please check your config and scripts folder.`);
+        showError(`Failed to load script: ${scriptName}. Please check your scripts folder.`);
         await clearSavedHandle();
         return;
       }
     }
     try {
-      Function(combinedCode)();
+      // Define appContext and attach folderHandles/folderFiles for app use
+      const appContext = { folderHandles, folderFiles };
+      const contextFn = new Function('appContext', 'root', 'config', combinedCode + '\nreturn appContext;');
+      const result = contextFn(appContext, pendingRoot, pendingConfig);
+      const entryFnName = pendingConfig.entryFunction;
+      if (typeof appContext[entryFnName] !== 'function') {
+        showError(`App scripts must attach a function named "${entryFnName}" to the 'appContext' object. Example: appContext.${entryFnName} = function(root, config) { ... }`);
+        loadBtn.style.display = 'inline-block';
+        await clearSavedHandle();
+        return;
+      }
+      // Call the entry function with the root handle, config, and appContext
+      await appContext[entryFnName](pendingRoot, pendingConfig, appContext);
+      setAppState('loaded');
+      pendingConfig = null;
+      pendingRoot = null;
     } catch (e) {
       showError('Error running app scripts: ' + e);
       setAppState('error');
       await clearSavedHandle();
       return;
     }
-    setAppState('loaded');
-    pendingConfig = null;
-    pendingRoot = null;
   } catch (err) {
     showError('Error: ' + err);
     setAppState('error');
@@ -252,9 +267,16 @@ function setAppState(state) {
     document.body.classList.add('review', 'admin-open');
     loadBtn.style.display = 'none';
     resetBtn.style.display = 'inline-block';
-    if (applyBtn) applyBtn.style.display = 'inline-block';
-    output.textContent = 'Review the configuration above. Click "Apply Config" to continue.';
-    showConfigSummary(window.appConfig);
+    // Only check for entryFunction presence/type
+    let entryFnName = pendingConfig && pendingConfig.entryFunction;
+    if (!entryFnName || typeof entryFnName !== 'string') {
+      output.textContent = 'Config is missing or has invalid "entryFunction". Please fix your config.';
+      if (applyBtn) applyBtn.style.display = 'none';
+    } else {
+      if (applyBtn) applyBtn.style.display = 'inline-block';
+      output.textContent = 'Review the configuration above. Click "Apply Config" to continue.';
+    }
+    showConfigSummary(pendingConfig);
   } else if (state === 'loaded') {
     document.body.classList.add('loaded');
     document.body.classList.remove('admin-open');
@@ -262,7 +284,7 @@ function setAppState(state) {
     resetBtn.style.display = 'inline-block';
     if (applyBtn) applyBtn.style.display = 'none';
     output.textContent = '';
-    if (window.appConfig) showConfigSummary(window.appConfig);
+    if (pendingConfig) showConfigSummary(pendingConfig);
   } else if (state === 'error') {
     document.body.classList.add('error', 'admin-open');
     loadBtn.style.display = 'inline-block';
