@@ -45,11 +45,21 @@ async function clearSavedHandle() {
   tx.objectStore(STORE_NAME).delete('root');
   return tx.complete;
 }
-async function verifyPermission(handle, mode = 'readwrite') {
+async function verifyPermission(handle, mode = 'readwrite', interactive = false) {
   const options = { mode };
-  if ((await handle.queryPermission(options)) === 'granted') return true;
-  if ((await handle.requestPermission(options)) === 'granted') return true;
-  return false;
+  try {
+    const query = await handle.queryPermission(options);
+    if (query === 'granted') return true;
+    if (interactive) {
+      // Only request permission if this is a user gesture
+      const request = await handle.requestPermission(options);
+      return request === 'granted';
+    }
+    return false;
+  } catch (e) {
+    // If the handle is invalid or permission fails, treat as not granted
+    return false;
+  }
 }
 
 // --- UI HELPERS ---
@@ -131,6 +141,13 @@ async function loadApp(root) {
       const configFile = await configHandle.getFile();
       config = JSON.parse(await configFile.text());
     } catch (e) {
+      // Handle SecurityError or invalid handle
+      if (e && e.name === 'SecurityError') {
+        showError('File system permissions are required. Please reload and pick your folder again.');
+        await clearSavedHandle();
+        setAppState('unloaded');
+        return;
+      }
       showError('Config not found or invalid! Please load the folder where your index-config.json file is located.');
       await clearSavedHandle();
       return;
@@ -161,6 +178,12 @@ async function loadApp(root) {
           }
         }
       } catch (e) {
+        if (e && e.name === 'SecurityError') {
+          showError('File system permissions are required. Please reload and pick your folder again.');
+          await clearSavedHandle();
+          setAppState('unloaded');
+          return;
+        }
         showError(`Folder "${folderName}" for "${key}" could not be found. Please check your folder structure.`);
         await clearSavedHandle();
         return;
@@ -173,6 +196,12 @@ async function loadApp(root) {
     // No more window.appConfig or window.folderHandles
     setAppState('review');
   } catch (err) {
+    if (err && err.name === 'SecurityError') {
+      showError('File system permissions are required. Please reload and pick your folder again.');
+      await clearSavedHandle();
+      setAppState('unloaded');
+      return;
+    }
     showError('Error: ' + err);
     setAppState('error');
     await clearSavedHandle();
@@ -256,6 +285,7 @@ applyBtn.addEventListener('click', async () => {
 
 // --- UI STATE MGMT ---
 function setAppState(state) {
+  console.log('[FaithForgeLabs] setAppState:', state); // DEBUG
   document.body.classList.remove('unloaded', 'review', 'loaded', 'error', 'admin-open');
   if (state === 'unloaded') {
     document.body.classList.add('unloaded', 'admin-open');
@@ -297,7 +327,12 @@ function setAppState(state) {
 loadBtn.addEventListener('click', async () => {
   try {
     const root = await window.showDirectoryPicker();
-    await loadApp(root);
+    // Now we can request permission interactively
+    if (await verifyPermission(root, 'readwrite', true)) {
+      await loadApp(root);
+    } else {
+      showError('Permission denied. Please allow access to the folder.');
+    }
   } catch (err) {
     showError('Error: ' + err);
   }
@@ -309,8 +344,9 @@ resetBtn.addEventListener('click', async () => {
 
 // --- ON PAGE LOAD ---
 window.addEventListener('DOMContentLoaded', async () => {
+  console.log('[FaithForgeLabs] DOMContentLoaded'); // DEBUG
   const savedHandle = await getSavedHandle();
-  if (savedHandle && await verifyPermission(savedHandle)) {
+  if (savedHandle && await verifyPermission(savedHandle, 'readwrite', false)) {
     await loadApp(savedHandle); // This should end in setAppState('review')
   } else {
     setAppState('unloaded');
